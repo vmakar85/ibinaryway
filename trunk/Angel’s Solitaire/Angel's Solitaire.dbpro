@@ -1,0 +1,41 @@
+; **** DarkBASIC Professional Project ****
+; Created by CodeSurge IDE
+version=DBP1.00
+project name=Angel Solitaire
+
+; ****Source file information****
+main=Angel Solitaire.dba
+final source=_Temp.dbsource
+
+;***Executable filename***
+executable=Angel Solitaire.exe
+build type=exe
+
+compression=NO
+encryption=NO
+card options window=NO
+
+; Debugger
+CLI=NO
+
+; *****Display Settings*****
+app title=
+graphics mode=window
+fullscreen resolution=1024x768x32
+window resolution=1024x768
+
+
+;*****Media files, icons, cursors*****
+media root path=C:\temp\Angel’s Solitaire\
+
+;****Version Information****
+VerComments=Angel's Solitaire the card game
+VerCompany=iBinaryWay
+VerFileDesc=dev. by Vladimir Makarenkov
+VerFileNumber=0.001
+VerInternal=
+VerCopyright=
+VerTrademark=
+VerFilename=Angel's Solitaire
+VerProduct=Angel's Solitaire
+VerProductNumber=0.001a
