@@ -1,0 +1,9 @@
+Rem ***** Included Source File *****
+// Загрузка и создание меню
+_create_Main_Menu:
+StartGame = DrawBMfont( SCREEN_WIDTH/2, SCREEN_HEIGHT/2, "Start Game", fontMain, 2 )
+ExitGame = DrawBMfont( SCREEN_WIDTH/2, (SCREEN_HEIGHT/2)+64, "Exit Game", fontMain, 2 )
+
+
+
+Return

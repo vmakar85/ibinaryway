@@ -1,0 +1,25 @@
+Rem Project: DarkAltara_AstroAdvature_fina_idea_rev3
+Rem Created: Friday, January 15, 2010
+
+Rem ***** Main Source File *****
+// глобальные переменные
+gosub _globals
+// выставляем разрешение экрана и другие параметры 
+gosub _DISPLAY_MODE
+// Загрузка медиа файлов ( Спрайт текста ) 
+	//gosub _Load_BMF
+// Загрузка и создание заднего фона игры
+gosub _Load_BG
+gosub _create_BG
+// Загрузка и создание меню
+//gosub _create_Main_Menu
+
+
+
+// Ibinary = DrawBMfont( 225, 300, "I LOVE YOU !!!!", fontMain, 1 )
+// Present = DrawBMfont( 225, 350, "OLGA", fontMain, 1 )
+
+do
+
+sync
+loop

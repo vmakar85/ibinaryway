@@ -1,0 +1,68 @@
+; **** Dark BASIC Professional Project File ****
+; **** Written by DarkBASIC Professional Editor ****
+version=DBP1.00
+project name=DarkAltara_AstroAdvature_fina_idea_rev3
+
+; **** source file information ****
+main=DarkAltara_AstroAdvature_fina_idea_rev3.dba
+include1=function.dba
+include2=BitmapFonts.dba
+include3=DISPLAY MODE.dba
+include4=_Load_BMF.dba
+include5=_Load_BG.dba
+include6=Globals.dba
+include7=_createBG.dba
+include8=_create_Main_Menu.dba
+final source=_Temp.dbsource
+
+; **** Executable Information  ***
+; build types: exe, media, installer, alone
+executable=DarkAltara_AstroAdvature_fina_idea_rev3.exe
+build type=exe
+; ** Media file compression **
+compression=YES
+
+; ** Media file encryption **
+encryption=YES
+; ** Display the card options screen window? **
+card options window=NO
+
+; **** debugger information ****
+; If the editor sets this to yes, it is running in debug mode
+CLI=NO
+CommandLineArguments=
+
+; **** display mode information ****
+app title=DarkAltara_AstroAdvature_fina_idea_rev3
+
+; graphics mode options: fullscreen, window, desktop, fulldesktop, hidden
+graphics mode=window
+fullscreen resolution=640x480x32
+
+; arbitrary sizes are valid for windowed mode
+window resolution=1024x768
+
+; **** External Files Information ****
+
+; **** Media ****
+; Example entries: media1=graphics\*.jpg
+media root path=C:\Documents and Settings\makarenkov\
+; **** Icons ****
+
+; **** Cursors ****
+
+; **** Version Info ****
+VerComments=
+VerCompany=
+VerFileDesc=build 00010
+VerFileNumber=v0.03
+VerInternal=v0.03
+VerCopyright=
+VerTrademark=
+VerFilename=
+VerProduct=
+VerProductNumber=v1.0
+
+; **** To Do ****
+
+; **** Comments ****

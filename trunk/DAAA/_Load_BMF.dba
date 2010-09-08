@@ -1,0 +1,6 @@
+Rem ***** Included Source File *****
+// Инициализация и загрузка шрифта для текста в игре!
+_Load_BMF:
+InitialiseBMfonts()
+fontMain    = LoadBMfont("Media/Font/daaa_font_blue.png")
+Return

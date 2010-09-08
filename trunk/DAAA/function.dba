@@ -1,0 +1,16 @@
+Rem ***** Included Source File *****
+// отступ спрайта
+Function OffSetSprite_to_M(spriteOffSet)
+Offset Sprite spriteOffSet,sprite width(spriteOffSet)/2,sprite height(spriteOffSet)/2
+EndFunction
+// рондомер 
+function rndx(min,max)
+value=rnd(max-min)+min
+endfunction value
+// ну блин позоимствовал
+function SetSpriteTexture(SpriteNumber,UScale#,VScale#,X#,Y#)
+  set sprite texture coord SpriteNumber,0,X#*UScale#,Y#*VScale#
+  set sprite texture coord SpriteNumber,1,(1+X#)*UScale#,Y#*VScale#
+  set sprite texture coord SpriteNumber,2,X#*UScale#,(1+Y#)*VScale#
+  set sprite texture coord SpriteNumber,3,(1+X#)*UScale#,(1+Y#)*VScale#
+endfunction

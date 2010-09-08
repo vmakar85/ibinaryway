@@ -1,0 +1,18 @@
+Rem ***** Included Source File *****
+_DISPLAY_MODE:
+
+// выставляем разрешение экрана
+set window position 0,0
+If CHECK DISPLAY MODE(1024, 768, 16)
+	SET DISPLAY MODE 1024, 768, 16
+else
+	SET DISPLAY MODE 800, 600, 16
+EndIf
+
+sync on
+sync rate 35
+//hide mouse
+SCREEN_WIDTH = SCREEN WIDTH()
+SCREEN_HEIGHT = SCREEN HEIGHT()
+
+return
