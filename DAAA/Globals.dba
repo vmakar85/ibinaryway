@@ -1,0 +1,9 @@
+Rem ***** Included Source File *****
+// глобальные обь€влени€
+_globals:
+// фон игры
+global IMG_BACKGROUND as word = 1
+global IMG_Sprite as word = 2
+// караблик игрока
+global Sprite_Ship as word = 3
+return

@@ -1,0 +1,7 @@
+Rem ***** Included Source File *****
+// Создание заднего фона игры.
+_create_BG:
+sprite 1,0,0,1
+size sprite 1,SCREEN_WIDTH,SCREEN_HEIGHT
+SetSpriteTexture(1,29,28,1,1)
+Return

@@ -1,0 +1,5 @@
+Rem ***** Included Source File *****
+// Загрузка заднего фона игры
+_Load_BG:
+load image "Media/BG.png",IMG_BACKGROUND
+return
