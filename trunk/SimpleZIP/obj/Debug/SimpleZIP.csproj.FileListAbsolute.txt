@@ -11,3 +11,15 @@ D:\MyWorks\SimpleZIP\obj\Debug\SimpleZIP.pdb
 D:\MyWorks\SimpleZIP\bin\Debug\ru-RU\SimpleZIP.resources.dll
 D:\MyWorks\SimpleZIP\obj\Debug\SimpleZIP.Form1.ru-RU.resources
 D:\MyWorks\SimpleZIP\obj\Debug\ru-RU\SimpleZIP.resources.dll
+F:\iBinaryWay\SimpleZIP\obj\Debug\SimpleZIP.exe
+F:\iBinaryWay\SimpleZIP\obj\Debug\SimpleZIP.pdb
+F:\iBinaryWay\SimpleZIP\bin\Debug\SimpleZIP.exe
+F:\iBinaryWay\SimpleZIP\bin\Debug\SimpleZIP.pdb
+F:\iBinaryWay\SimpleZIP\bin\Debug\ru-RU\SimpleZIP.resources.dll
+F:\iBinaryWay\SimpleZIP\bin\Debug\ICSharpCode.SharpZipLib.xml
+F:\iBinaryWay\SimpleZIP\obj\Debug\ResolveAssemblyReference.cache
+F:\iBinaryWay\SimpleZIP\obj\Debug\SimpleZIP.Form1.resources
+F:\iBinaryWay\SimpleZIP\obj\Debug\SimpleZIP.Properties.Resources.resources
+F:\iBinaryWay\SimpleZIP\obj\Debug\SimpleZIP.Form1.ru-RU.resources
+F:\iBinaryWay\SimpleZIP\obj\Debug\SimpleZIP.csproj.GenerateResource.Cache
+F:\iBinaryWay\SimpleZIP\obj\Debug\ru-RU\SimpleZIP.resources.dll

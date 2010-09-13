@@ -21,7 +21,7 @@ namespace SimpleZIP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,14 +37,34 @@ namespace SimpleZIP
             {
                 string zipFileName = fileDialog1.SafeFileName;
                 string zipFilePath__Name = fileDialog1.FileName;
-                addZipFile(zipFilePath__Name, zipFileName);
-                
+                string name = zipFileName.Substring(0, zipFileName.LastIndexOf('.'));
+
+                string CurrentDirectory = Directory.GetCurrentDirectory();
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                folderBrowserDialog.Description = "Задайте папку куда следует сохранить полученный ZIP архив. \n Если папка не задана, то утилита сохранить полученный файл в корневой папке.";
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string saveZipFilePath = folderBrowserDialog.SelectedPath;
+                    addZipFile(zipFilePath__Name, zipFileName, name, saveZipFilePath + "/");
+                }
+                else
+                {
+                    MessageBox.Show("Папка не выбрана", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                    addZipFile(zipFilePath__Name, zipFileName, name, Directory.GetCurrentDirectory() + "/");
+                }
+                MessageBox.Show("Архивация завершена", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
+            else
+            {
+                MessageBox.Show("Файл не выбран", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Только в платной версии =P");
+            MessageBox.Show("Только в платной версии =P", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -59,16 +79,19 @@ namespace SimpleZIP
             if (fileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string zipFileName = fileDialog1.SafeFileName;
+
+                FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
+
                 UnZip(zipFileName, Directory.GetCurrentDirectory());
             }
         }
 
-        public void addZipFile(string zipFilePath, string zipFileName)
+        public void addZipFile(string zipFilePath, string zipFileName,string name ,string saveZipFilePath)
         {
             FastZip fz = new FastZip();
             Directory.CreateDirectory("Temp");
-            File.Copy(zipFilePath, "Temp\\" + zipFileName);
-            fz.CreateZip(zipFileName + ".zip", "Temp", true, null);
+            File.Copy(zipFilePath, "Temp\\" + zipFileName , true);
+            fz.CreateZip(saveZipFilePath + name + ".zip", "Temp", true, null);
             Directory.Delete("Temp", true);
         }
 
