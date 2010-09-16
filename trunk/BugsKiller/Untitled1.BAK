@@ -1,0 +1,84 @@
+Rem Project: TheBugsKillerTUT01
+Rem Created: Thursday, September 16, 2010
+
+Rem ***** Main Source File *****
+
+set display mode 800,600,32
+sync on
+sync rate 240
+hide mouse
+//color backdrop RGB(255,255,255)
+
+
+
+create animated sprite 1,"Media\Bug.png",4,1,1
+sprite 1,10,30,1
+
+
+load image "Media\curs.png",2
+sprite 2,0,0,2
+OffSetSprite_to_M(2)
+
+
+Time = timer() 
+
+DO
+num=sprite collision(2,1)
+
+
+if num>0
+	if mouseclick()=1
+		If click = 0 
+			n = n + 5
+			Score = Score + 100
+			clone sprite 1,n
+			SET SPRITE FRAME n , 4
+			sprite n,sprite x(1),sprite y(1),1
+			sprite 1,rndx(0,600),rndx(0,500),1
+			BugsKild = BugsKild + 1 
+			click = 1			
+		endif
+	else
+		click = 0 
+	endif
+	
+endIf
+
+play sprite 1,1,3,300
+
+
+text 10,10, "" + str$(Score)
+text 10,30, "" + str$(TimeValue/1000)
+sprite 2,aimX,aimY,2
+aimX = mouseX()
+aimY = mouseY()
+
+TimeValue = abs( timer() - Time )
+
+If TimeValue > 3000
+Goto _scroteloop
+ENDIF
+
+	sync
+LOOP
+
+
+
+Function OffSetSprite_to_M(spriteOffSet)
+Offset Sprite spriteOffSet,sprite width(spriteOffSet)/2,sprite height(spriteOffSet)/2
+EndFunction
+
+function rndx(min,max)
+value=rnd(max-min)+min
+endfunction value
+
+_scroteloop:
+HIDE ALL SPRITES
+do
+	click = 1
+	text 150,150, "" + str$(Score)
+	text 150,170, "" + str$(BugsKild)
+	sync	
+LOOP
+
+End
