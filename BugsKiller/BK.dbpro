@@ -5,7 +5,7 @@ project name=BK
 
 ; **** source file information ****
 main=Untitled1.dba
-LineMain=78
+LineMain=63
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
