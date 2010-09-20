@@ -5,14 +5,14 @@ Rem ***** Main Source File *****
 
 set display mode 800,600,32
 sync on
-sync rate 240
-hide mouse
-//color backdrop RGB(255,255,255)
-
+sync rate 60
+rem hide mouse
+color backdrop RGB(255,255,255)
+INK RGB(0,0,0),RGB(255,255,255)
 
 
 create animated sprite 1,"Media\Bug.png",4,1,1
-sprite 1,rndx(0,600),rndx(0,500),1
+sprite 1,rndx(64,600),rndx(64,500),1
 OffSetSprite_to_M(1)
 
 load image "Media\curs.png",2
@@ -21,6 +21,9 @@ OffSetSprite_to_M(2)
 
 
 Time = timer() 
+spriteMoveSpeed# = 0.1
+Score = 0 
+BugsKild = 0 
 
 DO
 	
@@ -28,31 +31,43 @@ DO
 num=sprite collision(2,1)
 
 
-if num>0
-	if mouseclick()=1
-		If click = 0 
-			n = n + 5
-			Score = Score + 100
-			BugsKild = BugsKild + 1 
-			clone sprite 1,n
-			SET SPRITE FRAME n , 4
-			sprite n,sprite x(1),sprite y(1),1
-			sprite 1,rndx(0,600),rndx(0,500),1
-			ROTATE SPRITE 1, rndx(0,360)
-			click = 1			
-		endif
-	else
-		click = 0 
-	endif
-	
-endIf
+// if num>0
+// 	if mouseclick()=1
+// 		If click = 0 
+// 			n = n + 5
+// 			Score = Score + 100
+// 			BugsKild = BugsKild + 1 
+// 			clone sprite 1,n
+// 			SET SPRITE FRAME n , 4
+// 			sprite n,sprite x(1),sprite y(1),1
+// 			sprite 1,rndx(64,600),rndx(64,500),1
+// 			ROTATE SPRITE 1, rndx(0,360)
+// 			click = 1			
+// 		endif
+//   	else
+//   		click = 0 
+// 	endif
+// 	
+// endIf
+
+if mouseclick()=1
+If click = 0 
+text 10,10, "Бабах"
+click = 1 
+EndIf
+else
+click = 0 
+EndIf
 
 play sprite 1,1,3,300
-MOVE SPRITE  1, .2
+MOVE SPRITE  1, spriteMoveSpeed#
+
+
 
 If sprite x(1) < 0 or sprite y(1) < 0 or sprite x(1) > 800 or sprite y(1) > 600
-sprite 1,rndx(0,600),rndx(0,500),1	
+sprite 1,rndx(64,600),rndx(64,500),1	
 ROTATE SPRITE 1, rndx(0,360)
+Score = Score - 50
 ENDIF
 
 
@@ -69,6 +84,22 @@ If TimeValue > 60000
 Goto _scroteloop
 ENDIF
 
+If TimeValue > 20000
+spriteMoveSpeed# = 0.2
+endif
+
+If TimeValue > 30000
+spriteMoveSpeed# = 0.3
+endif
+
+If TimeValue > 40000
+spriteMoveSpeed# = 0.4
+endif
+
+If TimeValue > 50000
+spriteMoveSpeed# = 0.5
+endif
+
 	sync
 LOOP
 
@@ -84,11 +115,10 @@ endfunction value
 
 _scroteloop:
 HIDE ALL SPRITES
-do
-	click = 1
+DO
 	text 150,150, "Очки :" + str$(Score)
 	text 150,170, "Всего жуков убито :" + str$(BugsKild)
-	sync	
+	Sync	
 LOOP
 
 End
