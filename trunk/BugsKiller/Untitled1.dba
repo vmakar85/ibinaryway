@@ -7,8 +7,15 @@ set display mode 800,600,32
 sync on
 sync rate 60
 hide mouse
+disable escapekey
 color backdrop RGB(255,255,255)
-INK RGB(0,0,0),RGB(255,255,255)
+
+
+Goto _startscreanloop
+
+_gameLoad:
+
+If initPass = 1 then Goto _gameLoop
 
 
 create animated sprite 1,"Media\Bug.png",4,1,1
@@ -22,36 +29,43 @@ sprite 2,800,600,2
 OffSetSprite_to_M(2)
 SET SPRITE PRIORITY 2, 3
 
-
 InitialiseBMfonts()
 fontMain    = LoadBMfont("Media/daaa_font_blue.png")
 
 t_Score = DrawBMfont( 1000, 1000, "Score: " + str$(Score), fontMain, 1 )
 t_Timer = DrawBMfont( 1000, 1000, "Time: " + str$(TimeValue/1000), fontMain, 1 )
 
-
+initPass = 1
 
 _gameLoop:
 
+		show sprite 1
+		show sprite 2
+		INK RGB(0,0,0),RGB(255,255,255)
 		Time = timer() 
 		spriteMoveSpeed# = 0.3
 		Score = 0 
-		BugsKild = 0 
+		BugsKilled = 0 
 		showBMfont( t_Score )
 		showBMfont( t_Timer )
 
 DO
-	
 
-//num=sprite collision(2,1)
-
+	if escapekey()=1
+		If tupESC = 0 
+				goto _scroteloop
+			tupESC = 1			
+		endif
+   	else
+   		tupESC = 0 
+ 	endif
 
 if sprite collision(2,1)> 0 
 	if mouseclick()=1
 		If click = 0 
 			n = n + 5
 			Score = Score + 100
-			BugsKild = BugsKild + 1 
+			BugsKilled = BugsKilled  + 1 
 			clone sprite 1,n
 			SET SPRITE PRIORITY n, 1
 			SET SPRITE FRAME n , 4
@@ -83,13 +97,14 @@ sizeBMfont( t_Score, 40, 40 )
 sizeBMfont( t_Timer, 40, 40 )
 
 //text 10,10, "" + str$(Score)
-//text 10,30, "" + str$(TimeValue/1000)
+//text 150,30, "" + str$(GameTime/1000)
 
 sprite 2,aimX,aimY,2
 aimX = mouseX()
 aimY = mouseY()
 
 TimeValue = abs( timer() - Time )
+//GameTime = ( Time - timer() )
 
 // конец игры
 If TimeValue > 60000
@@ -128,38 +143,89 @@ Function OffSetSprite_to_M(spriteOffSet)
 Offset Sprite spriteOffSet,sprite width(spriteOffSet)/2,sprite height(spriteOffSet)/2
 EndFunction
 
-function rndx(min,max)
+
+Function rndx(min,max)
 value=rnd(max-min)+min
-endfunction value
+EndFunction value
 
 _scroteloop:
 
 HIDE ALL SPRITES
 
 	t_TotalScore = DrawBMfont( 150, 150, "Score: " + str$(Score), fontMain, 1 )
-    t_BugsKild = DrawBMfont( 150, 200, "Bugs Kild: "  + str$(BugsKild), fontMain, 1 )
+    t_BugsKilled = DrawBMfont( 150, 200, "Bugs Killed : "  + str$(BugsKilled), fontMain, 1 )
     t_GameRestart = DrawBMfont( 150, 250, "Press SpaceKey to restart", fontMain, 1 )
+    
+    tupESC = 1
 DO
 
 
 // 	text 150,150, "Очки :" + str$(Score)
 // 	text 150,170, "Всего жуков убито :" + str$(BugsKild)
-// 	text 150,190, "Для посторной игры жми пробел." 
-		
+// 	text 150,190, "Для перезапуска игры жми пробел." 
 	if spacekey()=1 
 	
 	hideBMfont( t_TotalScore )
-	hideBMfont( t_BugsKild )
+	hideBMfont( t_BugsKilled )
 	hideBMfont( t_GameRestart )
-	
-		show sprite 1
-		show sprite 2
-		
-	 goto _gameLoop
-	 
+			
+	goto _gameLoop 
 	endIF
+	
+	
+	
+	if escapekey()=1
+		If tupESC = 0 
+				goto _startscreanloop
+			tupESC = 1			
+		endif
+  	else
+  		tupESC = 0 
+	endif
+	
 	
 	Sync	
 LOOP
+
+_startscreanloop:
+HIDE ALL SPRITES
+newgameFlag = 1
+DO
+SET TEXT SIZE 50	
+INK RGB(255,rnd(255),rnd(255)),RGB(255,255,255)
+text SCREEN WIDTH()/2,SCREEN HEIGHT()/2, "The Bugs Killer"	
+SET TEXT SIZE 15
+	
+IF newgameFlag = 1 
+
+INK RGB(rnd(255),rnd(255),rnd(255)),RGB(255,255,255)
+text 150,150, "Начать игру"
+
+
+INK RGB(150,150,150),RGB(255,255,255)
+text 150,170, "Выход"
+if spacekey()=1 then goto _gameLoad
+endIF
+
+IF newgameFlag = 0 
+
+INK RGB(150,150,150),RGB(255,255,255)
+text 150,150, "Начать игру"
+
+
+INK RGB(rnd(255),rnd(255),rnd(255)),RGB(255,255,255)
+text 150,170, "Выход"
+if spacekey()=1 then end
+endIF
+
+if upkey()=1 then newgameFlag = 1
+if downkey()=1 then newgameFlag = 0
+
+
+
+
+sync	
+LOOP
+
 
 End
