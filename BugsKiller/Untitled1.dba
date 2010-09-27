@@ -189,6 +189,7 @@ LOOP
 
 _startscreanloop:
 HIDE ALL SPRITES
+tupESC = 1
 newgameFlag = 1
 DO
 SET TEXT SIZE 50	
@@ -221,7 +222,14 @@ endIF
 if upkey()=1 then newgameFlag = 1
 if downkey()=1 then newgameFlag = 0
 
-
+	if escapekey()=1
+		If tupESC = 0 
+				goto _startscreanloop
+			tupESC = 1			
+		endif
+  	else
+  		tupESC = 0 
+	endif
 
 
 sync	
