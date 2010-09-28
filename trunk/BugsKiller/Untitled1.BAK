@@ -41,24 +41,33 @@ _gameLoop:
 
 		show sprite 1
 		show sprite 2
+		
 		INK RGB(0,0,0),RGB(255,255,255)
+		
 		Time = timer() 
+		bugTime = timer()
+		
 		spriteMoveSpeed# = 0.3
+		
+		bugsAnimDelayBoost = 0 
+		bugsAnimDelay = 0
+		
 		Score = 0 
 		BugsKilled = 0 
+		
 		showBMfont( t_Score )
 		showBMfont( t_Timer )
 
 DO
 
 	if escapekey()=1
-		//If tupESC = 0 
+		If tupESC = 0 
 				goto _scroteloop
-		//	tupESC = 1			
+			tupESC = 1			
 		endif
-//   	else
-//   		tupESC = 0 
-// 	endif
+   	else
+   		tupESC = 0 
+ 	endif
 
 if sprite collision(2,1)> 0 
 	if mouseclick()=1
@@ -72,6 +81,7 @@ if sprite collision(2,1)> 0
 			sprite n,sprite x(1),sprite y(1),1
 			sprite 1,rndx(64,600),rndx(64,500),1
 			ROTATE SPRITE 1, rnd(360)
+			bugTime = timer()
 			click = 1			
 		endif
   	else
@@ -81,57 +91,80 @@ if sprite collision(2,1)> 0
 endIf
 
 
-play sprite 1,1,3,300
-MOVE SPRITE  1, spriteMoveSpeed#
+play sprite 1,1,3,250 - (bugsAnimDelay + bugsAnimDelayBoost)
+MOVE SPRITE  1, spriteMoveSpeed# + bugsBoost#
 
-
+// ловим жука по краям.
 If sprite x(1) < 0 or sprite y(1) < 0 or sprite x(1) > 800 or sprite y(1) > 600
 sprite 1,rndx(64,600),rndx(64,500),1	
 ROTATE SPRITE 1, rndx(0,360)
+bugTime = timer()
 Score = Score - 50
 ENDIF
 
+
+// курсор мыши
+sprite 2,aimX,aimY,2
+aimX = mouseX()
+aimY = mouseY()
+
+
+// ускоряем жуков
+If TimeValue > 10000
+spriteMoveSpeed# = 0.4
+bugsAnimDelay = 40
+endif
+
+If TimeValue > 20000
+spriteMoveSpeed# = 0.5
+bugsAnimDelay = 50
+endif
+
+If TimeValue > 30000
+spriteMoveSpeed# = 0.6
+bugsAnimDelay = 60
+endif
+
+If TimeValue > 40000
+spriteMoveSpeed# = 0.7
+bugsAnimDelay = 70
+endif
+
+If TimeValue > 50000
+spriteMoveSpeed# = 0.8
+bugsAnimDelay = 80 
+endif
+
+// ускоряем жука по истечению некоего времени
+
+If bugLiveTime > 400
+		bugsBoost# = 1
+		bugsAnimDelayBoost = 100
+	else
+		bugsBoost# = 0
+		bugsAnimDelayBoost = 0 
+EndIF
+
+
+// таймеры
+TimeValue = abs( timer() - Time )
+bugLiveTime = abs( bugTime - timer() )
+
+
+// вывод инфо о игровом мире
 alterBMFont(t_Score,  10, 0, "Score:" + str$(Score), fontMain, 1 )
 alterBMFont(t_Timer,  10, 50, "Time:" + str$(TimeValue/1000), fontMain, 1 )
 sizeBMfont( t_Score, 40, 40 )
 sizeBMfont( t_Timer, 40, 40 )
 
-//text 10,10, "" + str$(Score)
-//text 150,30, "" + str$(GameTime/1000)
-
-sprite 2,aimX,aimY,2
-aimX = mouseX()
-aimY = mouseY()
-
-TimeValue = abs( timer() - Time )
-//GameTime = ( Time - timer() )
 
 // конец игры
 If TimeValue > 60000
 Goto _scroteloop
 ENDIF
 
-// ускоряем жуков
-If TimeValue > 10000
-spriteMoveSpeed# = 0.4
-endif
-
-If TimeValue > 20000
-spriteMoveSpeed# = 0.5
-endif
-
-If TimeValue > 30000
-spriteMoveSpeed# = 0.6
-endif
-
-If TimeValue > 40000
-spriteMoveSpeed# = 0.7
-endif
-
-If TimeValue > 50000
-spriteMoveSpeed# = 0.8
-endif
-
+/// проверочный блок
+text 150,150, "" + str$(bugLiveTime)
 
 
 	sync
@@ -159,15 +192,11 @@ HIDE ALL SPRITES
     tupESC = 1
 DO
 
-
-// 	text 150,150, "Очки :" + str$(Score)
-// 	text 150,170, "Всего жуков убито :" + str$(BugsKild)
-// 	text 150,190, "Для перезапуска игры жми пробел." 
 	if spacekey()=1 
 	
-	hideBMfont( t_TotalScore )
-	hideBMfont( t_BugsKilled )
-	hideBMfont( t_GameRestart )
+		hideBMfont( t_TotalScore )
+		hideBMfont( t_BugsKilled )
+		hideBMfont( t_GameRestart )
 			
 	goto _gameLoop 
 	endIF
@@ -189,6 +218,7 @@ LOOP
 
 _startscreanloop:
 HIDE ALL SPRITES
+tupESC = 1
 newgameFlag = 1
 DO
 SET TEXT SIZE 50	
@@ -221,7 +251,14 @@ endIF
 if upkey()=1 then newgameFlag = 1
 if downkey()=1 then newgameFlag = 0
 
-
+	if escapekey()=1
+		If tupESC = 0 
+				end
+			tupESC = 1			
+		endif
+  	else
+  		tupESC = 0 
+	endif
 
 
 sync	
