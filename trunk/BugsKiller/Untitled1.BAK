@@ -17,6 +17,7 @@ _gameLoad:
 
 If initPass = 1 then Goto _gameLoop
 
+n = 5
 
 create animated sprite 1,"Media\Bug.png",4,1,1
 sprite 1,rndx(64,600),rndx(64,500),1
@@ -28,6 +29,14 @@ load image "Media\curs.png",2
 sprite 2,800,600,2
 OffSetSprite_to_M(2)
 SET SPRITE PRIORITY 2, 3
+
+load image "Media\curs_dot.png",3
+sprite 3,800,600,3
+OffSetSprite_to_M(3)
+SET SPRITE PRIORITY 3, 3
+
+load sound "Media\Gun 4.wav",1
+load sound "Media\bugsend.wav",2
 
 InitialiseBMfonts()
 fontMain    = LoadBMfont("Media/daaa_font_blue.png")
@@ -41,6 +50,7 @@ _gameLoop:
 
 		show sprite 1
 		show sprite 2
+		show sprite 3
 		
 		INK RGB(0,0,0),RGB(255,255,255)
 		
@@ -54,10 +64,12 @@ _gameLoop:
 		
 		Score = 0 
 		BugsKilled = 0 
+		accuracy# = 0
 		
 		showBMfont( t_Score )
 		showBMfont( t_Timer )
-
+		
+		clickCounter# = 0
 DO
 
 	if escapekey()=1
@@ -69,12 +81,13 @@ DO
    		tupESC = 0 
  	endif
 
-if sprite collision(2,1)> 0 
-	if mouseclick()=1
+if sprite collision(3,1) > 0 
+	if mouseclick() = 1
 		If click = 0 
-			n = n + 5
+			play sound 2
+			n = n + 1
 			Score = Score + 100
-			BugsKilled = BugsKilled  + 1 
+			BugsKilled# = BugsKilled#  + 1 
 			clone sprite 1,n
 			SET SPRITE PRIORITY n, 1
 			SET SPRITE FRAME n , 4
@@ -91,6 +104,20 @@ if sprite collision(2,1)> 0
 endIf
 
 
+
+if mouseclick()=1
+	If click2 = 0 
+		inc clickCounter# , 1
+		dec Score , 5 
+		play sound 1
+	click2 = 1 
+	EndIf
+else
+	click2 = 0 
+EndIf
+
+
+
 play sprite 1,1,3,250 - (bugsAnimDelay + bugsAnimDelayBoost)
 MOVE SPRITE  1, spriteMoveSpeed# + bugsBoost#
 
@@ -105,6 +132,7 @@ ENDIF
 
 // курсор мыши
 sprite 2,aimX,aimY,2
+sprite 3,aimX,aimY,3
 aimX = mouseX()
 aimY = mouseY()
 
@@ -164,7 +192,8 @@ Goto _scroteloop
 ENDIF
 
 /// проверочный блок
-text 150,150, "" + str$(bugLiveTime)
+//text 150,150, "" + str$(clickCounter#)
+
 
 
 	sync
@@ -183,11 +212,17 @@ EndFunction value
 
 _scroteloop:
 
-HIDE ALL SPRITES
+HIDE ALL SPRITES 
+
+// расчет для получения точности нашего стрелка
+if BugsKilled# > 0
+accuracy# = (BugsKilled# / clickCounter#) * 100
+endif
 
 	t_TotalScore = DrawBMfont( 150, 150, "Score: " + str$(Score), fontMain, 1 )
-    t_BugsKilled = DrawBMfont( 150, 200, "Bugs Killed : "  + str$(BugsKilled), fontMain, 1 )
-    t_GameRestart = DrawBMfont( 150, 250, "Press SpaceKey to restart", fontMain, 1 )
+    t_BugsKilled = DrawBMfont( 150, 200, "Bugs Killed : "  + str$(BugsKilled#), fontMain, 1 )
+    t_accuracy = DrawBMfont( 150, 250, "Accuracy : "  + str$(ceil(accuracy#)) + "%", fontMain, 1 )
+    t_GameRestart = DrawBMfont( 150, 300, "Press SpaceKey to restart", fontMain, 1 )
     
     tupESC = 1
 DO
@@ -196,6 +231,7 @@ DO
 	
 		hideBMfont( t_TotalScore )
 		hideBMfont( t_BugsKilled )
+		hideBMfont( t_accuracy )
 		hideBMfont( t_GameRestart )
 			
 	goto _gameLoop 

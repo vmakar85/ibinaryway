@@ -5,9 +5,9 @@ project name=BK
 
 ; **** source file information ****
 main=Untitled1.dba
-LineMain=166
+LineMain=88
 include1=BitmapFonts.dba
-LineInclude1=10
+LineInclude1=0
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone

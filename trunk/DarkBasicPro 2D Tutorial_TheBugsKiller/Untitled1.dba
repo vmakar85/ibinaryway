@@ -4,12 +4,13 @@ Rem Created: Thursday, September 16, 2010
 Rem ***** Main Source File *****
 
 set display mode 800,600,32
-sync on
-sync rate 60
+Sync on
+Sync rate 60
 hide mouse
 disable escapekey
 
 Goto _startscreanloop
+
 _gameLoad:
 
 If initPass = 1 then Goto _gameLoop
@@ -27,17 +28,17 @@ initPass = 1
 
 _gameLoop:
 
-spriteMoveSpeed# = 0.3
-Score = 0
-BugsKilled = 0
-Time = timer()
+		spriteMoveSpeed# = 0.3
+		Score = 0
+		BugsKilled = 0
+		Time = timer()
 DO
 	
 	
-if escapekey()=1 then Goto _scroteloop
+If escapekey()=1 then Goto _scroteloop
 
-if sprite collision(2,1)> 0 
-    if mouseclick()=1
+If sprite collision(2,1)> 0 
+    If mouseclick()=1
         If click = 0 
                         Score = Score + 100
 			BugsKilled = BugsKilled  + 1
@@ -58,15 +59,15 @@ If sprite x(1) < 0 or sprite y(1) < 0 or sprite x(1) > 800 or sprite y(1) > 600
    sprite 1,rndx(64,600),rndx(64,500),1
    ROTATE SPRITE 1, rnd(360)
    Score = Score - 50
-ENDIF
+EndIf
 
 If GameTime > 60000
-Goto _scroteloop
-ENDIF
+	Goto _scroteloop
+EndIf
 
 If GameTime > 60000
-spriteMoveSpeed# = 0.6
-ENDIF
+	spriteMoveSpeed# = 0.6
+EndIf
 
 play sprite 1,1,3,300
 MOVE SPRITE  1, spriteMoveSpeed#
@@ -79,68 +80,70 @@ GameTime = abs( Time - timer() )
 sprite 2,aimX,aimY,2
 aimX = mouseX()
 aimY = mouseY()
+
     Sync
 LOOP
 
 Function OffSetSprite_to_M(spriteOffSet)
-Offset Sprite spriteOffSet,sprite width(spriteOffSet)/2,sprite height(spriteOffSet)/2
+	Offset Sprite spriteOffSet,sprite width(spriteOffSet)/2,sprite height(spriteOffSet)/2
 EndFunction
 
 function rndx(min,max)
-value=rnd(max-min)+min
+	value=rnd(max-min)+min
 endfunction value
 
 _scroteloop:
-tupESC = 1
-HIDE ALL SPRITES
+	tupESC = 1
+	HIDE ALL SPRITES
 DO
 
-    text 150,150, "Очки : " + str$(Score)
+    text 150,150, "Очки : " + str$(Score) + " $"
     text 150,170, "Всего жуков убито :" + str$(BugsKilled)
     text 150,190, "Для перезапуска игры жми пробел." 
         
-    if spacekey()=1 then goto _gameLoop
+    If spacekey()=1 then goto _gameLoop
     
-        if escapekey()=1
+        If escapekey()=1
         If tupESC = 0 
                 goto _startscreanloop
             tupESC = 1            
-        endif
-      else
+        EndIf
+      Else
           tupESC = 0 
-    endif
+    EndIf
     
     Sync    
 LOOP
 
 _startscreanloop:
-HIDE ALL SPRITES
-newgameFlag = 1
+
+	HIDE ALL SPRITES
+	newgameFlag = 1
 DO
 SET TEXT SIZE 50    
 INK RGB(255,rnd(255),rnd(255)),RGB(255,255,255)
 text SCREEN WIDTH()/2,SCREEN HEIGHT()/2, "The Bugs Killer"    
     
-IF newgameFlag = 1 
-SET TEXT SIZE 12
-INK RGB(rnd(255),rnd(255),rnd(255)),RGB(255,255,255)
-text 150,150, "Начать игру"
-INK RGB(150,150,150),RGB(255,255,255)
-text 150,170, "Выход"
-if spacekey()=1 then goto _gameLoad
-endIF
+If newgameFlag = 1 
+	SET TEXT SIZE 12
+	INK RGB(rnd(255),rnd(255),rnd(255)),RGB(255,255,255)
+	text 150,150, "Начать игру"
+	INK RGB(150,150,150),RGB(255,255,255)
+	text 150,170, "Выход"
+	If spacekey()=1 then goto _gameLoad
+EndIf
 
-IF newgameFlag = 0 
-SET TEXT SIZE 12
-INK RGB(150,150,150),RGB(255,255,255)
-text 150,150, "Начать игру"
-INK RGB(rnd(255),rnd(255),rnd(255)),RGB(255,255,255)
-text 150,170, "Выход"
-if spacekey()=1 then end
-endIF
+If newgameFlag = 0 
+	SET TEXT SIZE 12
+	INK RGB(150,150,150),RGB(255,255,255)
+	text 150,150, "Начать игру"
+	INK RGB(rnd(255),rnd(255),rnd(255)),RGB(255,255,255)
+	text 150,170, "Выход"
+	If spacekey()=1 then end
+EndIf
 
-if upkey()=1 then newgameFlag = 1
-if downkey()=1 then newgameFlag = 0
+If upkey()=1 then newgameFlag = 1
+If downkey()=1 then newgameFlag = 0
 
-sync    
+Sync    
 LOOP
