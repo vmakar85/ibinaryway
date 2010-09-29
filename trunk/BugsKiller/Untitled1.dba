@@ -63,7 +63,7 @@ _gameLoop:
 		bugsAnimDelay = 0
 		
 		Score = 0 
-		BugsKilled = 0 
+		BugsKilled# = 0 
 		accuracy# = 0
 		
 		showBMfont( t_Score )
