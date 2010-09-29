@@ -5,7 +5,7 @@ project name=TheBugsKiller tutorial 2d game
 
 ; **** source file information ****
 main=Untitled1.dba
-LineMain=23
+LineMain=25
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
@@ -38,7 +38,8 @@ window resolution=640x480
 
 ; **** Media ****
 ; Example entries: media1=graphics\*.jpg
-media root path=F:\iBinaryWay\DarkBasicPro 2D Tutorial(
+media root path=F:\iBinaryWay\DarkBasicPro 2D Tutorial_TheBugsKiller\
+
 ; **** Icons ****
 icon1=\Media\tbk.ico
 
@@ -48,8 +49,8 @@ icon1=\Media\tbk.ico
 VerComments=
 VerCompany=
 VerFileDesc=
-VerFileNumber=
-VerInternal=
+VerFileNumber=v1.0
+VerInternal=v1.0
 VerCopyright=
 VerTrademark=
 VerFilename=

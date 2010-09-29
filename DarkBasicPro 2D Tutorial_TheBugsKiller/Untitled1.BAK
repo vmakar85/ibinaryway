@@ -60,7 +60,7 @@ If sprite x(1) < 0 or sprite y(1) < 0 or sprite x(1) > 800 or sprite y(1) > 600
    Score = Score - 50
 ENDIF
 
-If TimeValue > 60000
+If GameTime > 60000
 Goto _scroteloop
 ENDIF
 
@@ -71,10 +71,11 @@ ENDIF
 play sprite 1,1,3,300
 MOVE SPRITE  1, spriteMoveSpeed#
 
-text 10,10, "Score" + str$(Score) + " $"
-text 10,30, "Time" + str$(GameTime/1000)
+text 10,10, "Очки : " + str$(Score) + " $"
+text 10,30, "Время игры :" + str$(GameTime/1000)
 
 GameTime = abs( Time - timer() )
+
 sprite 2,aimX,aimY,2
 aimX = mouseX()
 aimY = mouseY()
@@ -94,8 +95,8 @@ tupESC = 1
 HIDE ALL SPRITES
 DO
 
-    text 150,150, "Очки :" + str$(Score)
-    text 150,170, "Всего жуков убито :" + str$(BugsKild)
+    text 150,150, "Очки : " + str$(Score)
+    text 150,170, "Всего жуков убито :" + str$(BugsKilled)
     text 150,190, "Для перезапуска игры жми пробел." 
         
     if spacekey()=1 then goto _gameLoop
