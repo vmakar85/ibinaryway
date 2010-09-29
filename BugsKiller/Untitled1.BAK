@@ -86,7 +86,7 @@ if sprite collision(3,1) > 0
 		If click = 0 
 			play sound 2
 			n = n + 1
-			Score = Score + 100
+			Score = Score + 105
 			BugsKilled# = BugsKilled#  + 1 
 			clone sprite 1,n
 			SET SPRITE PRIORITY n, 1
