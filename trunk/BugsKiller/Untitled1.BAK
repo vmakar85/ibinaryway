@@ -10,6 +10,15 @@ hide mouse
 disable escapekey
 color backdrop RGB(255,255,255)
 
+InitialiseBMfonts()
+fontMain = LoadBMfont("Media\daaa_font_blue.png")
+
+load image "Media\TBK_title.png",4
+
+sprite 4,400,300,4
+OffSetSprite_to_M(4)
+sprite 4,400,300,4
+SET SPRITE PRIORITY 4, 3
 
 Goto _startscreanloop
 
@@ -38,8 +47,6 @@ SET SPRITE PRIORITY 3, 3
 load sound "Media\Gun 4.wav",1
 load sound "Media\bugsend.wav",2
 
-InitialiseBMfonts()
-fontMain    = LoadBMfont("Media/daaa_font_blue.png")
 
 t_Score = DrawBMfont( 1000, 1000, "Score: " + str$(Score), fontMain, 1 )
 t_Timer = DrawBMfont( 1000, 1000, "Time: " + str$(TimeValue/1000), fontMain, 1 )
@@ -51,6 +58,9 @@ _gameLoop:
 		show sprite 1
 		show sprite 2
 		show sprite 3
+		show sprite 4
+		sprite 4,40,20,4
+		scale sprite 4 ,  100
 		
 		INK RGB(0,0,0),RGB(255,255,255)
 		
@@ -63,7 +73,7 @@ _gameLoop:
 		bugsAnimDelay = 0
 		
 		Score = 0 
-		BugsKilled = 0 
+		BugsKilled# = 0 
 		accuracy# = 0
 		
 		showBMfont( t_Score )
@@ -103,7 +113,10 @@ if sprite collision(3,1) > 0
 	
 endIf
 
-
+if sprite collision(4,1) > 0
+	sprite 1,rndx(64,600),rndx(64,500),1
+	ROTATE SPRITE 1, rnd(360)
+endIf
 
 if mouseclick()=1
 	If click2 = 0 
@@ -214,6 +227,10 @@ _scroteloop:
 
 HIDE ALL SPRITES 
 
+		show sprite 4
+		sprite 4,400,250,4
+		scale sprite 4 ,  180
+
 // расчет для получения точности нашего стрелка
 if BugsKilled# > 0
 accuracy# = (BugsKilled# / clickCounter#) * 100
@@ -253,35 +270,43 @@ DO
 LOOP
 
 _startscreanloop:
+
 HIDE ALL SPRITES
-tupESC = 1
-newgameFlag = 1
+
+
+	tupESC = 1
+	newgameFlag = 1
+	
+	t_Title = DrawBMfont( 200, 100 , "The Bugs Killer" , fontMain, 1 )
+	t_NewGame = DrawBMfont( 220, 200, "New Game ", fontMain, 1 )
+	t_Exit = DrawBMfont( 270, 250, "Exit", fontMain, 1 )
+	
+	sprite 4,350,200,4
+	show sprite 4
+	scale sprite 4 ,  100
+	
 DO
-SET TEXT SIZE 50	
-INK RGB(255,rnd(255),rnd(255)),RGB(255,255,255)
-text SCREEN WIDTH()/2,SCREEN HEIGHT()/2, "The Bugs Killer"	
-SET TEXT SIZE 15
+	
+scaleBMfont( t_Title, rndx(100,110) )
+
 	
 IF newgameFlag = 1 
+diffuseValueBMfont( t_NewGame, rnd(255),rnd(255),rnd(255) )
+diffuseValueBMfont( t_Exit, 0,0,255 )
 
-INK RGB(rnd(255),rnd(255),rnd(255)),RGB(255,255,255)
-text 150,150, "Начать игру"
-
-
-INK RGB(150,150,150),RGB(255,255,255)
-text 150,170, "Выход"
-if spacekey()=1 then goto _gameLoad
+	if spacekey()=1 
+	HIDE ALL SPRITES
+	
+		goto _gameLoad
+	EndIF
+	
 endIF
 
 IF newgameFlag = 0 
+diffuseValueBMfont( t_Exit, 0,rnd(255),0 )
+diffuseValueBMfont( t_NewGame, 0,0,255 )
 
-INK RGB(150,150,150),RGB(255,255,255)
-text 150,150, "Начать игру"
-
-
-INK RGB(rnd(255),rnd(255),rnd(255)),RGB(255,255,255)
-text 150,170, "Выход"
-if spacekey()=1 then end
+	if spacekey()=1 then end
 endIF
 
 if upkey()=1 then newgameFlag = 1
