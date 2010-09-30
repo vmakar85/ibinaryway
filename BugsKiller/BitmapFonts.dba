@@ -356,7 +356,7 @@ Function positionBMfont( BMid, x, y )
 
 endfunction
 `=================================
-`      MyEffects hide on BITMAP FONT
+`      MyEffects AlphaValue on BITMAP FONT
 `=================================
 Function AlphaValueBMfont( BMid,AlphaValue )
 
@@ -365,6 +365,19 @@ Function AlphaValueBMfont( BMid,AlphaValue )
 
    for k = First to Last
       SET SPRITE ALPHA k, AlphaValue
+   next k
+
+endfunction
+`=================================
+`      MyEffects diffuseValue(RGB) on BITMAP FONT
+`=================================
+Function diffuseValueBMfont( BMid, diffuseValueR , diffuseValueG , diffuseValueB )
+
+   First = BMstringSpriteNo( BMid ) + 1
+   Last  = First + BMstringLength( BMid ) - 1
+
+   for k = First to Last
+      set sprite diffuse k, diffuseValueR , diffuseValueG , diffuseValueB 
    next k
 
 endfunction
