@@ -32,6 +32,9 @@ _gameLoop:
 		Score = 0
 		BugsKilled = 0
 		Time = timer()
+		GameTime = 0
+		show sprite 1 
+		show sprite 2
 DO
 	
 	
@@ -40,7 +43,7 @@ If escapekey()=1 then Goto _scroteloop
 If sprite collision(2,1)> 0 
     If mouseclick()=1
         If click = 0 
-                        Score = Score + 100
+            Score = Score + 100
 			BugsKilled = BugsKilled  + 1
 			n = n + 3
 			clone sprite 1,n
@@ -61,11 +64,11 @@ If sprite x(1) < 0 or sprite y(1) < 0 or sprite x(1) > 800 or sprite y(1) > 600
    Score = Score - 50
 EndIf
 
-If GameTime > 60000
+If GameTime > 30000
 	Goto _scroteloop
 EndIf
 
-If GameTime > 60000
+If GameTime > 10000
 	spriteMoveSpeed# = 0.6
 EndIf
 
