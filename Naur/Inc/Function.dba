@@ -58,3 +58,11 @@ EndFunction
 function rndx(min,max)
 value=rnd(max-min)+min
 endfunction value
+
+Function old_position_sprite_x(object) 
+old_x = sprite x(object)
+endFunction old_x
+
+Function old_position_sprite_y(object) 
+old_y = sprite y(object)
+endFunction old_y
