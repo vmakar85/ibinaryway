@@ -1,14 +1,13 @@
 ; **** Dark BASIC Professional Project File ****
-; **** Written by DarkBASIC Professional Editor ****
+; **** Written by Synergy Editor ****
 version=DBP1.00
 project name=BK
 
 ; **** source file information ****
 main=Untitled1.dba
-LineMain=0
+LineMain=218
 include1=BitmapFonts.dba
 LineInclude1=0
-final source=_Temp.dbsource
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
@@ -62,3 +61,10 @@ VerProductNumber=v1.0
 ; **** To Do ****
 
 ; **** Comments ****
+comments1=
+
+; **** Advanced (setup.ini) configuration ****
+RemoveSafetyCode=NO
+SafeArrays=YES
+LocalTempFolder=NO
+ExternaliseDLLS=NO

@@ -49,7 +49,12 @@ load sound "Media\bugsend.wav",2
 
 
 t_Score = DrawBMfont( 1000, 1000, "Score: " + str$(Score), fontMain, 1 )
+diffuseValueBMfont( t_Score, 0,0,255 )
 t_Timer = DrawBMfont( 1000, 1000, "Time: " + str$(TimeValue/1000), fontMain, 1 )
+diffuseValueBMfont( t_Timer, 0,0,255 )
+t_Boom = DrawBMfont( 1000, 1000, "boom!!!", fontMain, 1 )
+diffuseValueBMfont( t_Boom, 0,0,0 )
+
 
 initPass = 1
 
@@ -80,6 +85,7 @@ _gameLoop:
 		showBMfont( t_Timer )
 		
 		clickCounter# = 0
+		diffuseValueBMfont( t_Timer, 70,255,0 )
 DO
 
 	if escapekey()=1
@@ -90,14 +96,22 @@ DO
    	else
    		tupESC = 0 
  	endif
-
-if sprite collision(3,1) > 0 
+hit = sprite collision(3,1)
+if hit => 0 
 	if mouseclick() = 1
 		If click = 0 
-			play sound 2
+			
+
 			n = n + 1
 			Score = Score + 105
 			BugsKilled# = BugsKilled#  + 1 
+
+			old_x = old_position_sprite_x(3)
+			old_y = old_position_sprite_y(3)
+			diffuseValueBMfont( t_Boom, rndx(150,255),rndx(150,255),rndx(150,255) )
+
+			
+			play sound 2
 			clone sprite 1,n
 			SET SPRITE PRIORITY n, 1
 			SET SPRITE FRAME n , 4
@@ -108,6 +122,7 @@ if sprite collision(3,1) > 0
 			click = 1			
 		endif
   	else
+  		hideBMfont( t_Boom )
   		click = 0 
 	endif
 	
@@ -123,9 +138,11 @@ if mouseclick()=1
 		inc clickCounter# , 1
 		dec Score , 5 
 		play sound 1
+		showBMfont( t_Boom )
 	click2 = 1 
 	EndIf
 else
+	hideBMfont( t_Boom )
 	click2 = 0 
 EndIf
 
@@ -154,26 +171,31 @@ aimY = mouseY()
 If TimeValue > 10000
 spriteMoveSpeed# = 0.4
 bugsAnimDelay = 40
+diffuseValueBMfont( t_Timer, 70,255,0 )
 endif
 
 If TimeValue > 20000
 spriteMoveSpeed# = 0.5
 bugsAnimDelay = 50
+diffuseValueBMfont( t_Timer, 255,255,87 )
 endif
 
 If TimeValue > 30000
 spriteMoveSpeed# = 0.6
 bugsAnimDelay = 60
+diffuseValueBMfont( t_Timer, 255,192,0 )
 endif
 
 If TimeValue > 40000
 spriteMoveSpeed# = 0.7
 bugsAnimDelay = 70
+diffuseValueBMfont( t_Timer, 255,128,0 )
 endif
 
 If TimeValue > 50000
 spriteMoveSpeed# = 0.8
 bugsAnimDelay = 80 
+diffuseValueBMfont( t_Timer, 255,0,0 )
 endif
 
 // ускоряем жука по истечению некоего времени
@@ -197,6 +219,7 @@ alterBMFont(t_Score,  10, 0, "Score:" + str$(Score), fontMain, 1 )
 alterBMFont(t_Timer,  10, 50, "Time:" + str$(TimeValue/1000), fontMain, 1 )
 sizeBMfont( t_Score, 40, 40 )
 sizeBMfont( t_Timer, 40, 40 )
+alterBMFont(t_Boom,  old_x - 20 , old_y + 20, "Boom!!!", fontMain, 1 )
 
 
 // конец игры
@@ -223,13 +246,21 @@ Function rndx(min,max)
 value=rnd(max-min)+min
 EndFunction value
 
+Function old_position_sprite_x(object) 
+old_x = sprite x(object)
+endFunction old_x
+
+Function old_position_sprite_y(object) 
+old_y = sprite y(object)
+endFunction old_y
+
 _scroteloop:
 
 HIDE ALL SPRITES 
 
 		show sprite 4
-		sprite 4,400,250,4
-		scale sprite 4 ,  180
+		sprite 4,450,300,4
+		scale sprite 4 ,  200
 
 // расчет для получения точности нашего стрелка
 if BugsKilled# > 0
@@ -237,9 +268,13 @@ accuracy# = (BugsKilled# / clickCounter#) * 100
 endif
 
 	t_TotalScore = DrawBMfont( 150, 150, "Score: " + str$(Score), fontMain, 1 )
+	diffuseValueBMfont( t_TotalScore, 0,0,255 )
     t_BugsKilled = DrawBMfont( 150, 200, "Bugs Killed : "  + str$(BugsKilled#), fontMain, 1 )
+    diffuseValueBMfont( t_BugsKilled, 0,0,255 )
     t_accuracy = DrawBMfont( 150, 250, "Accuracy : "  + str$(ceil(accuracy#)) + "%", fontMain, 1 )
+    diffuseValueBMfont( t_accuracy, 0,0,255 )
     t_GameRestart = DrawBMfont( 150, 300, "Press SpaceKey to restart", fontMain, 1 )
+    diffuseValueBMfont( t_GameRestart, 0,0,255 )
     
     tupESC = 1
 DO
@@ -286,7 +321,8 @@ HIDE ALL SPRITES
 	scale sprite 4 ,  100
 	
 DO
-	
+
+diffuseValueBMfont( t_Title, rnd(255),rnd(255),rnd(255) )	
 scaleBMfont( t_Title, rndx(100,110) )
 
 	
@@ -303,7 +339,7 @@ diffuseValueBMfont( t_Exit, 0,0,255 )
 endIF
 
 IF newgameFlag = 0 
-diffuseValueBMfont( t_Exit, 0,rnd(255),0 )
+diffuseValueBMfont( t_Exit, rnd(255),rnd(255),rnd(255) )
 diffuseValueBMfont( t_NewGame, 0,0,255 )
 
 	if spacekey()=1 then end
