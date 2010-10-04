@@ -1,0 +1,396 @@
+Rem ***** Included Source File *****
+`=================================
+`    INITIALISE BITMAP FONTS
+`=================================
+Function InitialiseBMfonts()
+
+   Dim BMchrLeft( 1, 127 )
+   Dim BMchrWidth( 1, 127 )
+   Dim BMstringSpriteNo( 1 )
+   Dim BMstringLength( 1 )
+
+   Global NoOfBMfonts
+   Global BitmapFontImages
+   Global BitmapFontSprites
+          BitmapFontImages  = 50000
+          BitmapFontSprites = 50000
+endfunction
+`=================================
+`       LOAD BITMAP FONT
+`=================================
+Function LoadBMfont(FileName as string )
+
+  
+   
+
+   inc NoOfBMfonts
+   Dim BMchrLeft( NoOfBMfonts, 127 )
+   Dim BMchrWidth( NoOfBMfonts, 127 )
+
+   load image FileName, BitmapFontImages, 1
+   
+   Size = image Width( BitmapFontImages ) / 10
+   Chr = 32
+   For y = 0 to 9
+      for x = 0 to 9
+         GetImage( BitmapFontImages, Chr + ( NoOfBMfonts * 255 ), x * Size, y * Size, Size, Size )
+         inc Chr
+      next x
+   next y
+   Delete Image BitmapFontImages
+
+   
+   TrimBMfont( NoOfBMfonts, Size )
+
+endfunction NoOfBMfonts
+`=================================
+`   GET IMAGE WITH TRANSPARENCY
+`=================================
+function GetImage( Image1, Image2, Xstart, Ystart, Xsize as dword, Ysize as dword)
+
+   `Set up Local variables
+   Local Width       as Dword
+   Local Height       as Dword
+   Local Depth       as Dword
+   Local Red          as Byte
+   Local Green       as Byte
+   Local Blue          as Byte
+   Local Alpha       as Byte
+   Local Memblock1    as integer
+   Local NewMemblock as integer
+
+   `Find unused memblocks
+   Memblock1 = 1
+   repeat
+      inc Memblock1
+   until memblock exist( Memblock1 ) = 0
+
+   NewMemblock = 2
+   repeat
+      inc NewMemblock
+   until memblock exist( NewMemblock ) = 0
+
+   `Do it!
+   make memblock from image Memblock1, Image1
+   Width  = memblock dword( Memblock1, 0 )
+   Height = memblock dword( Memblock1, 4 )
+   Depth  = memblock dword( Memblock1, 8 )
+   make memblock NewMemblock, ( Width * Height ) + 12
+
+   Write memblock Dword NewMemblock, 0, Xsize
+   Write memblock Dword NewMemblock, 4, Ysize
+   Write memblock Dword NewMemblock, 8, Depth
+
+   Position    = ( Width  * ( Ystart ) * 4) + ( Xstart * 4 ) + 12
+   NewPosition = 12
+
+   for y = 1 to Ysize
+      for x = 1 to Xsize
+
+         Blue  = memblock byte( Memblock1, Position + 0 )
+         Green = memblock byte( Memblock1, Position + 1 )
+         Red   = memblock byte( Memblock1, Position + 2 )
+         Alpha = memblock byte( Memblock1, Position + 3 )
+
+         write memblock byte NewMemblock, NewPosition + 0, Blue
+         write memblock byte NewMemblock, NewPosition + 1, Green
+         write memblock byte NewMemblock, NewPosition + 2, Red
+         write memblock byte NewMemblock, NewPosition + 3, Alpha
+
+         inc Position, 4
+         Inc NewPosition, 4
+
+      next x
+      inc Position , ( Width * 4 ) - ( Xsize * 4 )
+   next y
+
+   `Make the image from the the memblock we have just manipulated
+   make image from memblock Image2, NewMemblock
+
+   `Clean Up
+   delete memblock Memblock1
+   delete memblock NewMemblock
+
+endfunction
+`=================================
+`       TRIM BITMAP FONT
+`=================================
+Function TrimBMFont( FontNo, Size )
+
+   `Set up Local variables
+   Local BlankColumn as integer
+   Local Alpha       as byte
+   Local Chr         as integer
+   Local Position    as integer
+   Local Memblock1   as integer
+
+   `Find unused memblocks
+   Memblock1 = 1
+   repeat
+      inc Memblock1
+   until memblock exist( Memblock1 ) = 0
+
+   `Find the first column of pixels that
+   `contains a non-transparent pixel
+   For Chr = 33 to 126
+      Make Memblock From Image Memblock1, ( FontNo * 255 ) + Chr
+      for x = 1 to Size
+         BlankColumn = 1
+         for y = 1 to Size - 1
+
+            if BMchrLeft( FontNo, Chr ) = 0
+               Position = ( y * Size * 4 ) + ( x * 4 ) + 15
+               Alpha    = memblock byte( Memblock1, Position )
+
+               if Alpha > 0
+                  BlankColumn = 0
+                  y = Size - 1
+               endif
+            endif
+
+         next y
+
+         if BlankColumn = 0
+            BMchrLeft( FontNo, Chr ) = x
+            x = Size + 1
+         endif
+
+      next x
+
+      `Repeat from the right
+      for x = Size - 1 to 1 step - 1
+         BlankColumn = 1
+         for y = 1 to Size - 1
+
+            if BMchrWidth( FontNo, Chr ) = 0
+               Position = ( y * Size * 4 ) + ( x * 4 ) + 15
+               Alpha    = memblock byte( Memblock1, Position )
+
+               if Alpha > 0
+                  BlankColumn = 0
+                  y = Size
+               endif
+            endif
+
+         next y
+
+         if BlankColumn = 0
+            BMchrWidth( FontNo, Chr ) = x - BMchrLeft( FontNo, Chr )
+            x = 0
+         endif
+
+      next x
+      delete memblock Memblock1
+
+   next Chr
+
+   BMchrLeft( FontNo, 32 ) = 0
+   BMchrWidth( FontNo, 32 ) = Size / 2
+
+endfunction
+`=================================
+`      DISPLAY BITMAP FONT
+`=================================
+Function DrawBMFont( X, Y, S as string, fontStyle, Kern )
+
+   inc BMstringSpriteNo( 0 )
+   ThisString = BMstringSpriteNo( 0 )
+
+   SpriteNo = BitmapFontSprites + BMstringSpriteNo( ThisString - 1 ) + 255
+   dim BMstringSpriteNo( ThisString )
+   dim BMstringLength( ThisString )
+   dim BMstringText( ThisString ) as string
+   dim BMstringStyle( ThisString )
+   dim BMstringKern( ThisString )
+
+   for k = 1 to len( S )
+      Chr = asc( mid$( S, k ) )
+
+      if k = 1
+         sprite SpriteNo + k, X - BMchrLeft( FontStyle, Chr ), Y, ( FontStyle * 255 ) + Chr
+         NewX = X + BMchrWidth( FontStyle, Chr ) + Kern
+         set sprite priority SpriteNo + k,20
+      else
+         sprite SpriteNo + k, NewX - BMchrLeft( FontStyle, Chr ), Y, ( FontStyle * 255 ) + Chr
+         NewX = NewX + BMchrWidth( FontStyle, Chr ) + Kern
+         set sprite priority SpriteNo + k,20
+      endif
+
+   next k
+
+   `Store the values for future referencing
+   BMstringKern( ThisString )     = Kern
+   BMstringStyle( ThisString )    = fontStyle
+   BMstringText( ThisString )     = S
+   BMstringSpriteNo( ThisString ) = SpriteNo
+   BMstringLength( ThisString )   = len( S )
+
+endfunction ThisString
+`=================================
+`      ALTER BITMAP FONT
+`=================================
+Function alterBMFont( ThisString, X, Y, S as string, fontStyle, Kern )
+
+   SpriteNo = BitmapFontSprites + BMstringSpriteNo( ThisString - 1 ) + 255
+
+   if len( S ) <> Len( BMstringText( ThisString ) )
+      for k = Len( S ) + 1 to Len( BMstringText( ThisString ) )
+         S = S + " "
+      next k
+   endif
+
+   for k = 1 to len( S )
+      Chr = asc( mid$( S, k ) )
+
+      if k = 1
+         sprite SpriteNo + k, X - BMchrLeft( FontStyle, Chr ), Y, ( FontStyle * 255 ) + Chr
+         NewX = X + BMchrWidth( FontStyle, Chr ) + Kern
+         set sprite priority SpriteNo + k,20
+      else
+         sprite SpriteNo + k, NewX - BMchrLeft( FontStyle, Chr ), Y, ( FontStyle * 255 ) + Chr
+         NewX = NewX + BMchrWidth( FontStyle, Chr ) + Kern
+         set sprite priority SpriteNo + k,20
+      endif
+
+   next k
+
+   `Store the values for future referencing
+   BMstringKern( ThisString )     = Kern
+   BMstringStyle( ThisString )    = fontStyle
+   BMstringText( ThisString )     = S
+   BMstringSpriteNo( ThisString ) = SpriteNo
+   BMstringLength( ThisString )   = len( S )
+
+endfunction ThisString
+`=================================
+`      DELETE BITMAP FONT
+`=================================
+Function deleteBMfont( BMid )
+
+   First = BMstringSpriteNo( BMid ) + 1
+   Last  = First + BMstringLength( BMid ) - 1
+
+   for k = First to Last
+      delete sprite k
+   next k
+
+endfunction
+`=================================
+`      HIDE BITMAP FONT
+`=================================
+Function hideBMfont( BMid )
+
+   First = BMstringSpriteNo( BMid ) + 1
+   Last  = First + BMstringLength( BMid ) - 1
+
+   for k = First to Last
+      hide sprite k
+   next k
+
+endfunction
+`=================================
+`      SHOW BITMAP FONT
+`=================================
+Function showBMfont( BMid )
+
+   First = BMstringSpriteNo( BMid ) + 1
+   Last  = First + BMstringLength( BMid ) - 1
+
+   for k = First to Last
+      show sprite k
+   next k
+
+endfunction
+`=================================
+`      SIZE BITMAP FONT
+`=================================
+Function sizeBMfont( BMid, X, Y )
+
+   First = BMstringSpriteNo( BMid ) + 1
+   Last  = First + BMstringLength( BMid ) - 1
+
+   for k = First to Last
+      size sprite k, X, Y
+   next k
+
+endfunction
+`=================================
+`      SCALE BITMAP FONT
+`=================================
+Function scaleBMfont( BMid, Scale )
+
+   First = BMstringSpriteNo( BMid ) + 1
+   Last  = First + BMstringLength( BMid ) - 1
+
+   for k = First to Last
+      scale sprite k, Scale
+   next k
+
+endfunction
+`=================================
+`     POSITION BITMAP FONT
+`=================================
+Function positionBMfont( BMid, x, y )
+
+   First     = BMstringSpriteNo( BMid ) + 1
+   Last      = BMstringLength( BMid ) - 1 + First
+   S$        = BMstringText( BMid )
+   fontStyle = BMstringStyle( BMid )
+   Kern      = BMstringKern( BMid )
+
+   t = 1
+   for k = First to Last
+      Chr = asc( mid$( S$, t ) )
+
+      if k = First
+         sprite k, X - BMchrLeft( fontStyle, Chr ), Y, ( fontStyle * 255 ) + Chr
+         NewX = X + BMchrWidth( fontStyle, Chr ) + Kern
+         inc t
+      else
+         sprite k, NewX - BMchrLeft( fontStyle, Chr ), Y, ( fontStyle * 255 ) + Chr
+         NewX = NewX + BMchrWidth( fontStyle, Chr ) + Kern
+         inc t
+      endif
+
+   next k
+
+endfunction
+`=================================
+`      MyEffects AlphaValue on BITMAP FONT
+`=================================
+Function AlphaValueBMfont( BMid,AlphaValue )
+
+   First = BMstringSpriteNo( BMid ) + 1
+   Last  = First + BMstringLength( BMid ) - 1
+
+   for k = First to Last
+      SET SPRITE ALPHA k, AlphaValue
+   next k
+
+endfunction
+`=================================
+`      MyEffects diffuseValue(RGB) on BITMAP FONT
+`=================================
+Function diffuseValueBMfont( BMid, diffuseValueR , diffuseValueG , diffuseValueB )
+
+   First = BMstringSpriteNo( BMid ) + 1
+   Last  = First + BMstringLength( BMid ) - 1
+
+   for k = First to Last
+      set sprite diffuse k, diffuseValueR , diffuseValueG , diffuseValueB 
+   next k
+
+endfunction
+`=================================
+`      MyEffects PRIORITY BITMAP FONT
+`=================================
+Function PRIORITY_BMfont( BMid, PRIORITY )
+
+   First = BMstringSpriteNo( BMid ) + 1
+   Last  = First + BMstringLength( BMid ) - 1
+
+   for k = First to Last
+      SET SPRITE PRIORITY k, diffuseValueR 
+   next k
+
+endfunction

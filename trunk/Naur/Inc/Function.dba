@@ -1,0 +1,60 @@
+Rem ***** Included Source File *****
+RemStart
+
+RemEnd
+
+
+Function Load3dModel(FileName$)
+	For k = 1  to 1200
+		if object exist(k) = 0
+		 ModelName = k 
+		 load object FileName$,ModelName
+		 goto endserch_3dModel
+		endif	
+	Next k 
+endserch_3dModel:
+EndFunction k
+
+Function LoadSound(FileName$)
+	For k = 1  to 1200
+		if sound exist(k) = 0
+		 soundName = k 
+		 load sound FileName$,ModelName
+		 goto endserch_sound
+		endif	
+	Next k 
+endserch_sound:
+EndFunction k
+
+Function LoadImage(FileName$)
+	For k = 1  to 1200
+		if image exist(k) = 0
+      	 imageNaxt = k 
+		 load image FileName$,imageName
+		 goto endserch_image
+    	 EndIf	
+	Next k 
+endserch_image:
+EndFunction k
+
+Function addSpriteFromeImage(ImageName)
+ For k = 1 to 1200
+     	If sprite exist(k) = 0 
+     		spriteNext = k 
+     		load image FileName$,imageName2
+     		sprite spriteNext,-1000,-1000,imageNaxt2
+     		OffSetSprite_to_M(spriteNext)
+     		hide sprite spriteNext
+     		goto endserch_sprite
+     	EndIf
+ Next
+endserch_sprite:
+EndFunction k  
+
+Function OffSetSprite_to_M(spriteOffSet)
+Offset Sprite spriteOffSet,sprite width(spriteOffSet)/2,sprite height(spriteOffSet)/2
+EndFunction
+
+function rndx(min,max)
+value=rnd(max-min)+min
+endfunction value
