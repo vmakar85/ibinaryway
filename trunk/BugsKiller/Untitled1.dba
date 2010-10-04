@@ -44,9 +44,9 @@ sprite 3,800,600,3
 OffSetSprite_to_M(3)
 SET SPRITE PRIORITY 3, 3
 
-load sound "Media\Gun 4.wav",1
-load sound "Media\bugsend.wav",2
-
+load sound "Media\shot.wav",1
+load sound "Media\smash.wav",2
+SET SOUND PAN 2,10
 
 t_Score = DrawBMfont( 1000, 1000, "Score: " + str$(Score), fontMain, 1 )
 diffuseValueBMfont( t_Score, 0,0,255 )
@@ -97,7 +97,7 @@ DO
    		tupESC = 0 
  	endif
 hit = sprite collision(3,1)
-if hit => 0 
+if hit > 0 
 	if mouseclick() = 1
 		If click = 0 
 			
@@ -110,8 +110,8 @@ if hit => 0
 			old_y = old_position_sprite_y(3)
 			diffuseValueBMfont( t_Boom, rndx(150,255),rndx(150,255),rndx(150,255) )
 
+			Playsound_once(2)
 			
-			play sound 2
 			clone sprite 1,n
 			SET SPRITE PRIORITY n, 1
 			SET SPRITE FRAME n , 4
@@ -246,6 +246,13 @@ EndFunction
 Function rndx(min,max)
 value=rnd(max-min)+min
 EndFunction value
+
+Function Playsound_once(SoundNumber)
+SP = SOUND PLAYING(SoundNumber)
+ If SP = 0
+	play sound SoundNumber
+ EndIf 	
+ENDFUNCTION
 
 Function old_position_sprite_x(object) 
 old_x = sprite x(object)
