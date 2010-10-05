@@ -13,7 +13,7 @@ Function Load3dModel(FileName$)
 		endif	
 	Next k 
 endserch_3dModel:
-EndFunction k
+endFunction k
 
 Function LoadSound(FileName$)
 	For k = 1  to 1200
@@ -24,7 +24,7 @@ Function LoadSound(FileName$)
 		endif	
 	Next k 
 endserch_sound:
-EndFunction k
+endFunction k
 
 Function LoadImage(FileName$)
 	For k = 1  to 1200
@@ -35,7 +35,7 @@ Function LoadImage(FileName$)
     	 EndIf	
 	Next k 
 endserch_image:
-EndFunction k
+endFunction k
 
 Function addSpriteFromeImage(ImageName)
  For k = 1 to 1200
@@ -49,15 +49,15 @@ Function addSpriteFromeImage(ImageName)
      	EndIf
  Next
 endserch_sprite:
-EndFunction k  
+endFunction k  
 
 Function OffSetSprite_to_M(spriteOffSet)
 Offset Sprite spriteOffSet,sprite width(spriteOffSet)/2,sprite height(spriteOffSet)/2
-EndFunction
+endFunction
 
-function rndx(min,max)
+Function rndx(min,max)
 value=rnd(max-min)+min
-endfunction value
+endFunction value
 
 Function old_position_sprite_x(object) 
 old_x = sprite x(object)
@@ -66,3 +66,10 @@ endFunction old_x
 Function old_position_sprite_y(object) 
 old_y = sprite y(object)
 endFunction old_y
+
+Function Playsound_once(SoundNumber)
+SP = SOUND PLAYING(SoundNumber)
+ If SP = 0
+	play sound SoundNumber
+ EndIf 	
+endFunction
