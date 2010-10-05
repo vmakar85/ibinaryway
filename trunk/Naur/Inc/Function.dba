@@ -73,3 +73,21 @@ SP = SOUND PLAYING(SoundNumber)
 	play sound SoundNumber
  EndIf 	
 endFunction
+
+Function Distance(obj_num , obj2_num)
+
+ObjectPosX# = object position x( obj_num )
+ObjectPosY# = object position y( obj_num )
+ObjectPosZ# = object position z( obj_num )
+
+Object2PosX# = object position x( obj2_num )
+Object2PosY# = object position y( obj2_num )
+Object2PosZ# = object position z( obj2_num )
+
+X# = ObjectPosX# - Object2PosX#
+Y# = ObjectPosY# - Object2PosY#
+Z# = ObjectPosZ# - Object2PosZ#
+
+Distance# = sqrt( (X# ^ 2) + (Y# ^ 2) + (Z# ^ 2 ) )
+
+endFunction Distance#
