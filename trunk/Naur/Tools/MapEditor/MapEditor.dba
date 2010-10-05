@@ -3,3 +3,10 @@ RemStart
 
 RemEnd
 Rem ***** Main Source File *****
+sync on : sync rate 0
+
+start bbb gui
+
+windows set font 7,"Arial",0,0,0,0
+windows set icon "Media\dbpro_icon.ico"
+windows set visibility 1

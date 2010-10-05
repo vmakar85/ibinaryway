@@ -5,6 +5,7 @@ project name=Naur game engine
 
 ; **** source file information ****
 main=MapEditor.dba
+include1=BBBGUI_CONSTANTS.dba
 final source=_Temp.dbsource
 
 ; **** Executable Information  ***
@@ -38,7 +39,7 @@ window resolution=640x480
 
 ; **** Media ****
 ; Example entries: media1=graphics\*.jpg
-media root path=F:\iBinaryWay\Naur\Tools\MapEditor\
+media root path=D:\MyWorks\Naur\Tools\MapEditor\
 
 ; **** Icons ****
 
