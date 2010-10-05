@@ -4,6 +4,7 @@ Rem Created: Thursday, September 16, 2010
 Rem ***** Main Source File *****
 
 set display mode 800,600,32
+backdrop on // не забыть выложить пользователям.
 Sync on
 Sync rate 60
 hide mouse
