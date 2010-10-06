@@ -5,7 +5,7 @@ project name=TheBugsKiller tutorial 2d game
 
 ; **** source file information ****
 main=Untitled1.dba
-LineMain=0
+LineMain=10
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
