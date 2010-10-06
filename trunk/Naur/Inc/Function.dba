@@ -41,8 +41,7 @@ Function addSpriteFromeImage(ImageName)
  For k = 1 to 1200
      	If sprite exist(k) = 0 
      		spriteNext = k 
-     		load image FileName$,imageName2
-     		sprite spriteNext,-1000,-1000,imageNaxt2
+     		sprite spriteNext,-1000,-1000,ImageName
      		OffSetSprite_to_M(spriteNext)
      		hide sprite spriteNext
      		goto endserch_sprite
