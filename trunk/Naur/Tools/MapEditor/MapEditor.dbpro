@@ -1,12 +1,17 @@
 ; **** Dark BASIC Professional Project File ****
-; **** Written by DarkBASIC Professional Editor ****
+; **** Written by Synergy Editor ****
 version=DBP1.00
 project name=Naur game engine
 
 ; **** source file information ****
 main=MapEditor.dba
+LineMain=19
 include1=BBBGUI_CONSTANTS.dba
-final source=_Temp.dbsource
+LineInclude1=0
+include2=add_menu.dba
+LineInclude2=54
+include3=menu_work.dba
+LineInclude3=1
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
@@ -26,7 +31,7 @@ CLI=NO
 CommandLineArguments=
 
 ; **** display mode information ****
-app title=Dark Basic Pro Project
+app title=MapEditor
 
 ; graphics mode options: fullscreen, window, desktop, fulldesktop, hidden
 graphics mode=window
@@ -60,3 +65,10 @@ VerProductNumber=v1.0
 ; **** To Do ****
 
 ; **** Comments ****
+comments1=
+
+; **** Advanced (setup.ini) configuration ****
+RemoveSafetyCode=NO
+SafeArrays=YES
+LocalTempFolder=NO
+ExternaliseDLLS=NO

@@ -1,0 +1,63 @@
+Rem ***** Included Source File *****
+add_menu_item:
+
+set window on
+start bbb gui //"Media\Ruby.msstyles"
+
+windows set font 7,"Arial",0,0,0,0
+windows set icon "Media\dbpro_icon.ico"
+windows set visibility 1
+
+dbpro_w=get dbpro window() : set main window dbpro_w
+
+b1=make button(700,580,100,20,"Выход",dbpro_w)
+
+`This command makes empty menu bar
+menu=make menu()
+
+`File - 1
+sub1=make submenu() : menu append submenu menu,sub1,"File"
+submenu insert item sub1,"New",1
+submenu insert separator sub1
+submenu insert item sub1,"Open",2
+submenu insert item sub1,"Save",3
+submenu insert item sub1,"Save As...",4
+submenu insert separator sub1
+submenu insert item sub1,"Import",5
+submenu insert item sub1,"Export",6
+submenu insert separator sub1
+submenu insert item sub1,"Exit",17
+
+// `Edit - 2
+// sub2=make submenu() 
+// menu append submenu menu,sub2,"Edit"
+// submenu insert item sub2,"Undo",13
+// submenu insert item sub2,"Redo",14
+// 
+// menu enable item sub2,13,0
+// 
+// sub3=make submenu()
+// submenu insert item sub3,"SubItem1",8
+// submenu insert item sub3,"SubItem2",9
+// link submenu sub1,4,sub3
+// 
+// sub4=make submenu()
+// submenu insert item sub4,"SubSubItem1",10 : menu check item sub4,10,1
+// submenu insert item sub4,"SubSubItem2",11
+// submenu insert item sub4,"SubSubItem3",12
+// link submenu sub3,9,sub4
+
+`This command shows rhe menu in our window
+`NOTE: It is important that this command is called after all
+`      submenus are added
+apply menu dbpro_w,menu
+
+w1=make window(300,600,"Инструментарий",dbpro_w,WS_EX_TOOLWINDOW,WS_OVERLAPPED)
+w2=make window(300,300,"Инфо",dbpro_w,WS_EX_TOOLWINDOW,WS_OVERLAPPED)
+
+
+
+
+
+
+return
