@@ -5,7 +5,7 @@ project name=BK
 
 ; **** source file information ****
 main=Untitled1.dba
-LineMain=112
+LineMain=87
 include1=BitmapFonts.dba
 LineInclude1=0
 
