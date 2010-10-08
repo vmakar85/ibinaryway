@@ -3,8 +3,7 @@ RemStart
 
 RemEnd
 // ***** Main Source File *****
-set display mode 800,600,32
-sync on : sync rate 0
+Init()
 
 Create_Enter_point()
 
@@ -23,11 +22,34 @@ RemStart
 RemEnd
 gosub menu_work_main_loop
 
+// меню -> выход
+If s = 17
+            a=make message box("Вы уверены, что хотите выйти?","MapEditor",MB_YESNO)
+         if a=IDYES then end bbb gui : end
+EndIf
+// кнопка выход
+if button clicked(b1)
+            a=make message box("Вы уверены, что хотите выйти?","MapEditor",MB_YESNO)
+         if a=IDYES then end bbb gui : end
+endif
 
+// крестик
+repeat
+   get event
+   h=event get handle()
+   m=event get message()
+   if h=get main window()
+      if m=WM_CLOSE
+         a=make message box("Вы уверены, что хотите выйти?","MapEditor",MB_YESNO)
+         if a=IDYES then end bbb gui : end
+      endif
+   endif
+until m=0
 //
 sync
 loop
 //
+
 
 RemStart
 какие то функции необходимо будет перенести в отдельный файлик а иначе запнусь нах

@@ -1,0 +1,5 @@
+Rem ***** Included Source File *****
+Function Init()
+set display mode 800,500,32
+sync on : sync rate 0
+EndFunction
