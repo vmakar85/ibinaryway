@@ -3,29 +3,7 @@ menu_work_main_loop:
 
 `Get the id of selected menu item 
 s=MENU GET SELECTED ITEM ID()
-// меню -> выход
-If s = 17
-            a=make message box("Вы уверены, что хотите выйти?","MapEditor",MB_YESNO)
-         if a=IDYES then end bbb gui : end
-EndIf
-// кнопка выход
-if button clicked(b1)
-            a=make message box("Вы уверены, что хотите выйти?","MapEditor",MB_YESNO)
-         if a=IDYES then end bbb gui : end
-endif
 
-// крестик
-repeat
-   get event
-   h=event get handle()
-   m=event get message()
-   if h=get main window()
-      if m=WM_CLOSE
-         a=make message box("Вы уверены, что хотите выйти?","MapEditor",MB_YESNO)
-         if a=IDYES then end bbb gui : end
-      endif
-   endif
-until m=0
 
 
 Return

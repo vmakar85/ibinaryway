@@ -1,5 +1,5 @@
 ; **** Dark BASIC Professional Project File ****
-; **** Written by Synergy Editor ****
+; **** Written by DarkBASIC Professional Editor ****
 version=DBP1.00
 project name=Naur game engine
 
@@ -12,6 +12,8 @@ include2=add_menu.dba
 LineInclude2=54
 include3=menu_work.dba
 LineInclude3=1
+include4=Init.dba
+final source=_Temp.dbsource
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
@@ -44,7 +46,7 @@ window resolution=640x480
 
 ; **** Media ****
 ; Example entries: media1=graphics\*.jpg
-media root path=F:\iBinaryWay\Naur\Tools\MapEditor\
+media root path=D:\MyWorks\Naur\Tools\MapEditor\
 
 ; **** Icons ****
 
@@ -65,10 +67,3 @@ VerProductNumber=v1.0
 ; **** To Do ****
 
 ; **** Comments ****
-comments1=
-
-; **** Advanced (setup.ini) configuration ****
-RemoveSafetyCode=NO
-SafeArrays=YES
-LocalTempFolder=NO
-ExternaliseDLLS=NO
