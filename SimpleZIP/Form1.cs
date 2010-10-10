@@ -7,8 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.Cryptography;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
+
+///
+/// Доделать копирование MD5sum в юуфер обмена
+/// Проверить соответствие Md5 cj сторонними программами
+/// ДОделать архивацию папок
+///
 
 namespace SimpleZIP
 {
@@ -41,19 +48,23 @@ namespace SimpleZIP
 
                 string CurrentDirectory = Directory.GetCurrentDirectory();
                 FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-                folderBrowserDialog.Description = "Задайте папку куда следует сохранить полученный ZIP архив. \n Если папка не задана, то утилита сохранить полученный файл в корневой папке.";
+                folderBrowserDialog.Description = "Задайте папку куда следует сохранить ZIP архив. \nЕсли папка не задана, то утилита сохранить \nполученный файл в корневой папке.";
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
                     string saveZipFilePath = folderBrowserDialog.SelectedPath;
                     addZipFile(zipFilePath__Name, zipFileName, name, saveZipFilePath + "/");
+                    MessageBox.Show("Архивация завершена \n" + "MD5SUM : " + MD5Sum(saveZipFilePath + "/" + name + ".zip") + "\n" + "Внимание после закрытия данного окноа значение MD5Sum окажется в Вашем буфере обмена.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    CCopy(MD5Sum(saveZipFilePath + "/" + name + ".zip"));
                 }
                 else
                 {
                     MessageBox.Show("Папка не выбрана", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                     addZipFile(zipFilePath__Name, zipFileName, name, Directory.GetCurrentDirectory() + "/");
+                    MessageBox.Show("Архивация завершена\n" + "MD5SUM : " + MD5Sum(Directory.GetCurrentDirectory() + "/" + name + ".zip") + "\n" + "Внимание после закрытия данного окноа значение MD5Sum окажется в Вашем буфере обмена.", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    CCopy(MD5Sum(Directory.GetCurrentDirectory() + "/" + name + ".zip"));
                 }
-                MessageBox.Show("Архивация завершена", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            
             }
             else
             {
@@ -99,6 +110,32 @@ namespace SimpleZIP
         {
             FastZip fz = new FastZip();
             fz.ExtractZip(zipFileName, targetDir, null);
+        }
+
+        public void AddZipFolders()
+        {
+ 
+        
+        }
+
+        public string MD5Sum(string fileName)
+        {
+            FileStream file = new FileStream(fileName, FileMode.Open);
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] retVal = md5.ComputeHash(file);
+            file.Close();
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < retVal.Length; i++)
+            {
+                sb.Append(retVal[i].ToString("x2"));
+            }
+            return sb.ToString();
+        }
+
+        public void CCopy(string text)
+        {
+            Clipboard.SetText(text);
         }
 
     }

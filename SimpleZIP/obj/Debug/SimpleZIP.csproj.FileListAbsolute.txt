@@ -1,7 +1,5 @@
 D:\MyWorks\SimpleZIP\bin\Debug\SimpleZIP.exe
 D:\MyWorks\SimpleZIP\bin\Debug\SimpleZIP.pdb
-D:\MyWorks\SimpleZIP\bin\Debug\ICSharpCode.SharpZipLib.dll
-D:\MyWorks\SimpleZIP\bin\Debug\ICSharpCode.SharpZipLib.xml
 D:\MyWorks\SimpleZIP\obj\Debug\ResolveAssemblyReference.cache
 D:\MyWorks\SimpleZIP\obj\Debug\SimpleZIP.Form1.resources
 D:\MyWorks\SimpleZIP\obj\Debug\SimpleZIP.Properties.Resources.resources
