@@ -9,3 +9,16 @@ D:\MyWorks\SimpleZIP\obj\Release\SimpleZIP.csproj.GenerateResource.Cache
 D:\MyWorks\SimpleZIP\obj\Release\ru-RU\SimpleZIP.resources.dll
 D:\MyWorks\SimpleZIP\obj\Release\SimpleZIP.exe
 D:\MyWorks\SimpleZIP\obj\Release\SimpleZIP.pdb
+F:\iBinaryWay\SimpleZIP\obj\Release\SimpleZIP.exe
+F:\iBinaryWay\SimpleZIP\obj\Release\SimpleZIP.pdb
+F:\iBinaryWay\SimpleZIP\bin\Release\SimpleZIP.exe
+F:\iBinaryWay\SimpleZIP\bin\Release\SimpleZIP.pdb
+F:\iBinaryWay\SimpleZIP\bin\Release\ru-RU\SimpleZIP.resources.dll
+F:\iBinaryWay\SimpleZIP\bin\Release\ICSharpCode.SharpZipLib.dll
+F:\iBinaryWay\SimpleZIP\bin\Release\ICSharpCode.SharpZipLib.xml
+F:\iBinaryWay\SimpleZIP\obj\Release\ResolveAssemblyReference.cache
+F:\iBinaryWay\SimpleZIP\obj\Release\SimpleZIP.Form1.resources
+F:\iBinaryWay\SimpleZIP\obj\Release\SimpleZIP.Properties.Resources.resources
+F:\iBinaryWay\SimpleZIP\obj\Release\SimpleZIP.Form1.ru-RU.resources
+F:\iBinaryWay\SimpleZIP\obj\Release\SimpleZIP.csproj.GenerateResource.Cache
+F:\iBinaryWay\SimpleZIP\obj\Release\ru-RU\SimpleZIP.resources.dll
