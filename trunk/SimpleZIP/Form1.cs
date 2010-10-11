@@ -11,9 +11,7 @@ using System.Security.Cryptography;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
-///
-/// Доделать копирование MD5sum в юуфер обмена
-/// Проверить соответствие Md5 cj сторонними программами
+///To Do
 /// ДОделать архивацию папок
 ///
 
@@ -28,9 +26,22 @@ namespace SimpleZIP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            // тестируем ось
+            OS_ch();
+            //Вывод подсказки для кнопок
+            helpTip(button1, "Запаковать файл в *.Zip архив");
+            helpTip(button2, "Не работет, можно не жать... НЕ РАБОТАЕТ Я ТЕБЕ ГОВОРЮ!!!.");
+            helpTip(button3, "Распаковать *.Zip файл");
         }
 
+        ///
+        /// Кнопки и действия для кнопок
+        /// Кнопка 1 -запаковать 1н файл *готово
+        /// Кнопка 2 -запаковать папку и файлы в ней *в работе
+        /// Кнопка 3 -распаковать zip архив *готово
+        ///
+
+        // кнопка для сжатия 1го файла.. 
         private void button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog1 = new OpenFileDialog();
@@ -77,7 +88,7 @@ namespace SimpleZIP
         {
             MessageBox.Show("Только в платной версии =P", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
-
+        // Кнопка для распаковки файла архива
         private void button3_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog1 = new OpenFileDialog();
@@ -97,6 +108,11 @@ namespace SimpleZIP
             }
         }
 
+        ///
+        /// Работа с архивом(и) 
+        /// Запаковка\распаковка файлов/папок - общие методы. 
+        ///
+        // запоковка 1го файла в архив
         public void addZipFile(string zipFilePath, string zipFileName,string name ,string saveZipFilePath)
         {
             FastZip fz = new FastZip();
@@ -105,19 +121,35 @@ namespace SimpleZIP
             fz.CreateZip(saveZipFilePath + name + ".zip", "Temp", true, null);
             Directory.Delete("Temp", true);
         }
-
+        // распаковка файлов
         public void UnZip(string zipFileName, string targetDir)
         {
             FastZip fz = new FastZip();
             fz.ExtractZip(zipFileName, targetDir, null);
         }
-
-        public void AddZipFolders()
+        // запаковка папки с файломи ( общий метод ) 
+        public void AddZipFolders(string zipFileName, string dir)
         {
- 
-        
+            //ZipFile zipFile = ZipFile.Create(zipFileName);
+
+            //string fileToAdd = "";
+
+            //zipFile.BeginUpdate();
+
+            //zipFile.AddDirectory(dir);
+
+            //zipFile.Add(fileToAdd);
+
+            //zipFile.CommitUpdate();
         }
 
+
+
+        ///
+        /// Не очень важные куски кода или дополнительные методы
+        ///
+
+        // Выкоыриваем MD5 из файла архива
         public string MD5Sum(string fileName)
         {
             FileStream file = new FileStream(fileName, FileMode.Open);
@@ -132,10 +164,49 @@ namespace SimpleZIP
             }
             return sb.ToString();
         }
-
+        // копируем текст в буфер обмена
         public void CCopy(string text)
         {
             Clipboard.SetText(text);
+        }
+        // узнаем версию винды для последующей коректировки отображения окна ПО. 
+        public void OS_ch()
+        {
+            System.OperatingSystem os_ver = System.Environment.OSVersion;
+
+            if (os_ver.Version.Major <= 5)
+            {
+                TransparencyKey = System.Drawing.Color.Empty;
+                BackColor = System.Drawing.SystemColors.Control;
+            }
+           // return os_ver;
+        }
+
+        // постоянные переменные
+        private const int WM_NCHITTEST = 0x84;
+        private const int HTCLIENT = 0x1;
+        private const int HTCAPTION = 0x2;
+        // перетаскивание формы дергая ее за любую часть
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case WM_NCHITTEST:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == HTCLIENT)
+                        m.Result = (IntPtr)HTCAPTION;
+                    return;
+            }
+            base.WndProc(ref m);
+        }
+
+        // Визуальные подсказки для кнопок
+        public void helpTip(Control button, string TextForTIPS)
+        {
+            ToolTip t = new ToolTip();
+            t.UseAnimation = true;
+            //t.ToolTipIcon = ToolTipIcon.Info;
+            t.SetToolTip(button, TextForTIPS);
         }
 
     }
