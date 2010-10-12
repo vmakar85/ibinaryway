@@ -10,9 +10,9 @@ autocam off
 position camera 0, 10,10,10
 
 Type LVL_primetives
-colour_R as Integer 
-colour_G as Integer
-colour_B as Integer
+colour_R as word 
+colour_G as word 
+colour_B as word 
 x_pos as float
 y_pos as float
 z_pos as float
@@ -85,9 +85,9 @@ read Float 1,LVL_primetives_Data(i).x_pos
 read Float 1,LVL_primetives_Data(i).y_pos
 read Float 1,LVL_primetives_Data(i).z_pos
 
-write File 1,LVL_primetives_Data(i).colour_R  
-write File 1,LVL_primetives_Data(i).colour_G 
-write File 1,LVL_primetives_Data(i).colour_B 
+read word 1,LVL_primetives_Data(i).colour_R  
+read word 1,LVL_primetives_Data(i).colour_G 
+read word 1,LVL_primetives_Data(i).colour_B 
 
  make object cube i , 1
  POSITION OBJECT i, LVL_primetives_Data(i).x_pos, LVL_primetives_Data(i).y_pos, LVL_primetives_Data(i).z_pos
