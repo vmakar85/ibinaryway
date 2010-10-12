@@ -1,0 +1,100 @@
+Rem ***** Included Source File *****
+Rem Project: test001
+Rem Created: Monday, October 04, 2010
+
+Rem ***** Main Source File *****
+
+sync on
+sync rate 60
+autocam off
+position camera 0, 10,10,10
+
+Type LVL_primetives
+colour_R as Integer 
+colour_G as Integer
+colour_B as Integer
+x_pos as float
+y_pos as float
+z_pos as float
+EndType
+
+
+
+Dim LVL_primetives_Data(0) as LVL_primetives
+
+
+load_lvl_primitivs("test.cbl")
+ 
+ 	make matrix 1,1000,1000,25,25
+	position matrix 1,0,0,0
+	update matrix 1
+ 
+
+  
+  
+position camera 0, 50,10,50
+
+camspeed = 2
+camheight = 10
+xpos = camera position x(0)
+zpos = camera position z(0)
+
+do
+
+   camRotY = wrapvalue(camera angle y(0)+ mousemovex()*0.3)
+   camRotX = wrapvalue(camera angle x(0)+ mousemovey()*0.3)
+
+if upkey()=1
+    inc xpos, sin(camRotY)*camspeed
+    inc zpos, cos(camRotY)*camspeed
+    position camera xpos,camheight,zpos
+ endif
+if downkey()=1
+    dec xpos, sin(camRotY)*camspeed
+    dec zpos, cos(camRotY)*camspeed
+    position camera xpos,camheight,zpos
+endif
+if leftkey()=1
+    dec xpos, sin(camRotY+90)*camspeed
+    dec zpos, cos(camRotY+90)*camspeed
+    position camera xpos,camheight,zpos
+endif
+if rightkey()=1
+    dec xpos, sin(camRotY-90)*camspeed
+    dec zpos, cos(camRotY-90)*camspeed
+    position camera xpos,camheight,zpos
+endif
+
+rotate camera camRotX,camRotY,0
+
+sync
+loop
+
+
+
+Function load_lvl_primitivs(filename$)
+if file exist(filename$)=1
+open to read 1, filename$
+read word 1, index
+for i = 1 to index
+	
+
+ARRAY INSERT AT BOTTOM LVL_primetives_Data(0)
+
+read Float 1,LVL_primetives_Data(i).x_pos
+read Float 1,LVL_primetives_Data(i).y_pos
+read Float 1,LVL_primetives_Data(i).z_pos
+
+write File 1,LVL_primetives_Data(i).colour_R  
+write File 1,LVL_primetives_Data(i).colour_G 
+write File 1,LVL_primetives_Data(i).colour_B 
+
+ make object cube i , 1
+ POSITION OBJECT i, LVL_primetives_Data(i).x_pos, LVL_primetives_Data(i).y_pos, LVL_primetives_Data(i).z_pos
+ color object i,rgb(LVL_primetives_Data(i).colour_R, LVL_primetives_Data(i).colour_G, LVL_primetives_Data(i).colour_B)
+ 
+ next i
+ 
+close file 1
+endif
+ENDFUNCTION

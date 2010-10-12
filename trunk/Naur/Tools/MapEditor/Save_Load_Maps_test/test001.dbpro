@@ -5,7 +5,7 @@ project name=test001
 
 ; **** source file information ****
 main=test001.dba
-LineMain=28
+LineMain=29
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
