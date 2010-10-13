@@ -4,8 +4,8 @@ version=DBP1.00
 project name=test001
 
 ; **** source file information ****
-main=test001.dba
-LineMain=29
+main=Save_test001.dba
+LineMain=12
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
@@ -38,7 +38,7 @@ window resolution=640x480
 
 ; **** Media ****
 ; Example entries: media1=graphics\*.jpg
-media root path=F:\iBinaryWay\Naur\Tools\MapEditor\Save_Load_Maps_test\
+media root path=F:\iBinaryWay\Naur\Tools\MapEditor\Save_Maps_test\
 
 ; **** Icons ****
 icon1=C:\Program Files\Dark Basic Software\Dark Basic Professional\Compiler\plugins\rawicon.ico

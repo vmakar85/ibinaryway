@@ -1,17 +1,14 @@
-Rem Project: test001
-Rem Created: Monday, October 04, 2010
-
  Rem ***** Main Source File *****
 
- sync on
+sync on
 sync rate 60
 autocam off
 position camera 0, 10,10,10
 
  Type LVL_primetives
-colour_R as word 
-colour_G as word
-colour_B as word 
+colour_R as Integer 
+colour_G as Integer
+colour_B as Integer 
 x_pos as float
 y_pos as float
 z_pos as float
@@ -97,13 +94,21 @@ if file exist(filename$)=1 then delete file filename$
 open to write 1, filename$
 write word 1, index
 for i = 1 to index
- write Float 1, LVL_primetives_Data(i).x_pos
- write Float 1, LVL_primetives_Data(i).y_pos
- write Float 1, LVL_primetives_Data(i).z_pos
+	
+
+ write float 1, LVL_primetives_Data(i).x_pos
+ write float 1, LVL_primetives_Data(i).y_pos
+ write float 1, LVL_primetives_Data(i).z_pos
 
  write word 1,LVL_primetives_Data(i).colour_R 
  write word 1,LVL_primetives_Data(i).colour_G 
  write word 1,LVL_primetives_Data(i).colour_B 
+ 
 next i
+
 close file 1
+
 ENDFUNCTION
+
+
+
