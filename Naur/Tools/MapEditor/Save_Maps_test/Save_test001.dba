@@ -1,0 +1,117 @@
+ Rem ***** Main Source File *****
+
+sync on
+sync rate 60
+autocam off
+position camera 0, 10,10,10
+
+Type LVL_primetives
+
+	colour_R as Integer 
+	colour_G as Integer
+	colour_B as Integer 
+	
+	x_pos as float
+	y_pos as float
+	z_pos as float
+	
+EndType
+
+ 
+
+ Dim LVL_primetives_Data(5200) as LVL_primetives
+
+ index = 0
+
+  For i = 1 to 5200
+ Inc index , 1	
+ make object cube i , 1
+ 
+ POSITION OBJECT i, rnd(100), 0, rnd(100)
+ 
+ LVL_primetives_Data(i).colour_R = rnd(255)
+ LVL_primetives_Data(i).colour_G = rnd(255)
+ LVL_primetives_Data(i).colour_B = rnd(255)
+ 
+ color object i,rgb(LVL_primetives_Data(i).colour_R, LVL_primetives_Data(i).colour_G, LVL_primetives_Data(i).colour_B)
+ 
+ LVL_primetives_Data(i).x_pos = OBJECT POSITION X(i)
+ LVL_primetives_Data(i).y_pos = OBJECT POSITION Y(i)
+ LVL_primetives_Data(i).z_pos = OBJECT POSITION Z(i)
+
+  Next i 
+
+  save_lvl_primitivs(index, test.cbl)
+ 
+ 	make matrix 1,1000,1000,25,25
+	position matrix 1,0,0,0
+	update matrix 1
+ 
+
+   
+  
+position camera 0, 50,10,50
+
+  camspeed = 2
+camheight = 10
+xpos = camera position x(0)
+zpos = camera position z(0)
+
+  do
+ if mouseclick()=1
+  camRotY = wrapvalue(camera angle y(0)+ mousemovex()*0.3)
+  camRotX = wrapvalue(camera angle x(0)+ mousemovey()*0.3)
+  rotate camera camRotX,camRotY,0
+  endif
+  
+  if upkey()=1
+    inc xpos, sin(camRotY)*camspeed
+    inc zpos, cos(camRotY)*camspeed
+    position camera xpos,camheight,zpos
+ endif
+if downkey()=1
+    dec xpos, sin(camRotY)*camspeed
+    dec zpos, cos(camRotY)*camspeed
+    position camera xpos,camheight,zpos
+endif
+if leftkey()=1
+    dec xpos, sin(camRotY+90)*camspeed
+    dec zpos, cos(camRotY+90)*camspeed
+    position camera xpos,camheight,zpos
+endif
+if rightkey()=1
+    dec xpos, sin(camRotY-90)*camspeed
+    dec zpos, cos(camRotY-90)*camspeed
+    position camera xpos,camheight,zpos
+endif
+
+
+
+  sync
+loop
+
+ 	
+Function save_lvl_primitivs(index,filename$)
+	//filename$ = "test.cbl"
+if file exist(filename$)=1 then delete file filename$
+open to write 1, filename$
+write word 1, index
+for i = 1 to index
+	
+
+ write float 1, LVL_primetives_Data(i).x_pos
+ write float 1, LVL_primetives_Data(i).y_pos
+ write float 1, LVL_primetives_Data(i).z_pos
+
+ write word 1,LVL_primetives_Data(i).colour_R 
+ write word 1,LVL_primetives_Data(i).colour_G 
+ write word 1,LVL_primetives_Data(i).colour_B 
+ 
+next i
+
+close file 1
+
+ENDFUNCTION
+
+
+
