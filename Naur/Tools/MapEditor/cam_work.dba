@@ -1,0 +1,63 @@
+Rem ***** Included Source File *****
+cam_work_main_loop:
+
+
+// кнопка "<-"
+if button clicked(b2)
+	If Click = 0 
+	
+		Click = 1	
+	EndIF
+Else
+Click = 0
+endif
+
+// кнопка "->"
+if button clicked(b3)
+	If Click = 0 
+	
+		Click = 1	
+	EndIF
+Else
+Click = 0
+endif
+
+// кнопка "+"
+if button clicked(b4)=1
+	If Click = 0 
+	    ////////////////////
+
+	    ////////////////////
+		Click = 1	
+	EndIF
+Else
+Click = 0
+endif
+
+// кнопка "-"
+if button clicked(b5)
+	If Click = 0 
+		////////////////////
+		
+		////////////////////
+		Click = 1	
+	EndIF
+Else
+Click = 0
+endif
+
+
+If Cam_renew = 1
+
+w2l1=make label(0,0,300,20,"camera angle x: "+ str$(camera angle x(0)),w2)
+w2l2=make label(0,20,300,20,"camera angle y: "+ str$(camera angle y(0)),w2)
+w2l3=make label(0,40,300,20,"camera angle z: "+ str$(camera angle z(0)),w2)
+w2l4=make label(0,60,300,20,"camera position x: "+ str$(camera position x(0)),w2)
+w2l5=make label(0,80,300,20,"camera position y: "+ str$(camera position y(0)),w2)
+w2l6=make label(0,100,300,20,"camera position z: "+ str$(camera position z(0)),w2)
+
+Cam_renew = 0
+
+EndIF
+
+return
