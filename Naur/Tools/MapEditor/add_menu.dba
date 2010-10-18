@@ -10,7 +10,14 @@ windows set visibility 1
 
 dbpro_w=get dbpro window() : set main window dbpro_w
 
+// кнопка выход
 b1=make button(700,580,100,20,"¬ыход",dbpro_w)
+// камера ( работа с камеровй ) 
+b2=make button(0,0,20,20,"<-",dbpro_w)
+b3=make button(20,0,20,20,"->",dbpro_w)
+b4=make button(40,0,20,20,"+",dbpro_w)
+b5=make button(60,0,20,20,"-",dbpro_w)
+
 
 `This command makes empty menu bar
 menu=make menu()
@@ -52,8 +59,25 @@ submenu insert item sub1,"¬ыход",17
 `      submenus are added
 apply menu dbpro_w,menu
 
-w1=make window(300,600,"»нструментарий",dbpro_w,WS_EX_TOOLWINDOW,WS_OVERLAPPED)
+// создание обьектов
+w1=make window(306,600,"—оздать объект",dbpro_w,WS_EX_TOOLWINDOW,WS_OVERLAPPED)
+w1b1=make button(0,0,100,100,"ящик1",w1)
+w1b2=make button(100,0,100,100,"ящик2",w1)    
+w1b3=make button(200,0,100,100,"ящик3",w1)    
+w1b4=make button(0,100,100,100,"ящик4",w1)    
+w1b5=make button(100,100,100,100,"ящик5",w1)  
+w1b6=make button(200,100,100,100,"—тарт",w1)  
+w1b7=make button(000,200,100,100,"‘иниш",w1)  
+
+// инфо панель
 w2=make window(300,300,"»нфо",dbpro_w,WS_EX_TOOLWINDOW,WS_OVERLAPPED)
+w2l1=make label(0,0,300,20,"camera angle x: "+ str$(camera angle x(0)),w2)
+w2l2=make label(0,20,300,20,"camera angle y: "+ str$(camera angle y(0)),w2)
+w2l3=make label(0,40,300,20,"camera angle z: "+ str$(camera angle z(0)),w2)
+w2l4=make label(0,60,300,20,"camera position x: "+ str$(camera position x(0)),w2)
+w2l5=make label(0,80,300,20,"camera position y: "+ str$(camera position y(0)),w2)
+w2l6=make label(0,100,300,20,"camera position z: "+ str$(camera position z(0)),w2)
+
 
 
 
