@@ -13,6 +13,7 @@ LineInclude2=54
 include3=menu_work.dba
 LineInclude3=1
 include4=Init.dba
+include5=cam_work.dba
 final source=_Temp.dbsource
 
 ; **** Executable Information  ***
@@ -46,7 +47,7 @@ window resolution=640x480
 
 ; **** Media ****
 ; Example entries: media1=graphics\*.jpg
-media root path=D:\MyWorks\Naur\Tools\MapEditor\
+media root path=F:\iBinaryWay\Naur\Tools\MapEditor\
 
 ; **** Icons ****
 
