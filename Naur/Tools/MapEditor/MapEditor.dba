@@ -5,46 +5,35 @@ RemEnd
 // ***** Main Source File *****
 Init()
 
+
+
 Create_Enter_point()
 
 gosub add_menu_item
 
-
+Time = timer()
+ cam_X# = 0 
+ cam_Y# = 0.25
+ cam_Z# = -2
 RemStart
 Основной цикл программы
 RemEnd
 do
 //
 
-
+If MainTime > 300
+	Cam_renew = 1
+	MainTime = 0 
+	Time = timer()
+EndIf
+MainTime = abs( Time - timer() )
 RemStart
 Уход в острал( работа с меню и реакция на нажатие кнопок)
 RemEnd
 gosub menu_work_main_loop
+gosub cam_work_main_loop
 
-// меню -> выход
-If s = 17
-            a=make message box("Вы уверены, что хотите выйти?","MapEditor",MB_YESNO)
-         if a=IDYES then end bbb gui : end
-EndIf
-// кнопка выход
-if button clicked(b1)
-            a=make message box("Вы уверены, что хотите выйти?","MapEditor",MB_YESNO)
-         if a=IDYES then end bbb gui : end
-endif
-
-// крестик
-repeat
-   get event
-   h=event get handle()
-   m=event get message()
-   if h=get main window()
-      if m=WM_CLOSE
-         a=make message box("Вы уверены, что хотите выйти?","MapEditor",MB_YESNO)
-         if a=IDYES then end bbb gui : end
-      endif
-   endif
-until m=0
+position camera 0,cam_X#,cam_Y#,cam_Z#
 //
 sync
 loop
@@ -55,8 +44,12 @@ RemStart
 какие то функции необходимо будет перенести в отдельный файлик а иначе запнусь нах
 RemEnd
 Function Create_Enter_point()
+
 	make object cube 1,1
 	make matrix 1,1000,1000,25,25
-	position matrix 1,0,0,0
+	position matrix 1,-500,0,-500
 	update matrix 1
+	rotate camera 0,7.2,0,0
+	//position camera 0,cam_X#,cam_Y#,cam_Z#
+
 EndFunction

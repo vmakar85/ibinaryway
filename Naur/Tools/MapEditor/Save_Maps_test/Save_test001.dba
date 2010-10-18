@@ -41,7 +41,7 @@ EndType
 
   Next i 
 
-  save_lvl_primitivs(index, test.cbl)
+save_lvl_primitivs(index, "test.cbl" )
  
  	make matrix 1,1000,1000,25,25
 	position matrix 1,0,0,0
@@ -52,7 +52,7 @@ EndType
   
 position camera 0, 50,10,50
 
-  camspeed = 2
+camspeed = 2
 camheight = 10
 xpos = camera position x(0)
 zpos = camera position z(0)
@@ -99,13 +99,13 @@ write word 1, index
 for i = 1 to index
 	
 
- write float 1, LVL_primetives_Data(i).x_pos
- write float 1, LVL_primetives_Data(i).y_pos
- write float 1, LVL_primetives_Data(i).z_pos
+ write string 1, str$(LVL_primetives_Data(i).x_pos)
+ write string 1, str$(LVL_primetives_Data(i).y_pos)
+ write string 1, str$(LVL_primetives_Data(i).z_pos)
 
- write word 1,LVL_primetives_Data(i).colour_R 
- write word 1,LVL_primetives_Data(i).colour_G 
- write word 1,LVL_primetives_Data(i).colour_B 
+ write string 1, str$(LVL_primetives_Data(i).colour_R) 
+ write string 1, str$(LVL_primetives_Data(i).colour_G) 
+ write string 1, str$(LVL_primetives_Data(i).colour_B) 
  
 next i
 

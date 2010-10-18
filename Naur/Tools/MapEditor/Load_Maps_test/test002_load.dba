@@ -41,8 +41,11 @@ zpos = camera position z(0)
 
 do
 
-   camRotY = wrapvalue(camera angle y(0)+ mousemovex()*0.3)
-   camRotX = wrapvalue(camera angle x(0)+ mousemovey()*0.3)
+ if mouseclick()=1
+  camRotY = wrapvalue(camera angle y(0)+ mousemovex()*0.3)
+  camRotX = wrapvalue(camera angle x(0)+ mousemovey()*0.3)
+  rotate camera camRotX,camRotY,0
+ endif
 
 if upkey()=1
     inc xpos, sin(camRotY)*camspeed
@@ -87,13 +90,24 @@ for i = 1 to index
 
 ARRAY INSERT AT BOTTOM LVL_primetives_Data(0)
 
-read float 1,LVL_primetives_Data(i).x_pos
-read float 1,LVL_primetives_Data(i).y_pos
-read float 1,LVL_primetives_Data(i).z_pos
+read string 1,a$
+LVL_primetives_Data(i).x_pos = val(a$)
 
-read word 1,LVL_primetives_Data(i).colour_R  
-read word 1,LVL_primetives_Data(i).colour_G 
-read word 1,LVL_primetives_Data(i).colour_B 
+read string 1,a$
+LVL_primetives_Data(i).y_pos = val(a$)
+
+read string 1,a$
+LVL_primetives_Data(i).z_pos = val(a$)
+
+
+read string 1,a$
+LVL_primetives_Data(i).colour_R = val(a$)
+ 
+read string 1,a$
+LVL_primetives_Data(i).colour_G = val(a$)
+
+read string 1,a$
+LVL_primetives_Data(i).colour_B = val(a$)
 
  make object cube i , 1
  POSITION OBJECT i, LVL_primetives_Data(i).x_pos, LVL_primetives_Data(i).y_pos, LVL_primetives_Data(i).z_pos

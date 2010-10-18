@@ -1,11 +1,12 @@
 ; **** Dark BASIC Professional Project File ****
-; **** Written by Synergy Editor ****
+; **** Written by DarkBASIC Professional Editor ****
 version=DBP1.00
 project name=test001
 
 ; **** source file information ****
 main=Save_test001.dba
 LineMain=12
+final source=_Temp.dbsource
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
@@ -60,10 +61,3 @@ VerProductNumber=v1.0
 ; **** To Do ****
 
 ; **** Comments ****
-comments1=
-
-; **** Advanced (setup.ini) configuration ****
-RemoveSafetyCode=NO
-SafeArrays=YES
-LocalTempFolder=NO
-ExternaliseDLLS=NO
