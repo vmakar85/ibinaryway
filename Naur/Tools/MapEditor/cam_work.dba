@@ -5,7 +5,10 @@ cam_work_main_loop:
 // кнопка "<-"
 if button clicked(b2)
 	If Click = 0 
-	
+		////////////////////
+		cam_X# = cam_X# - 0.02
+		Cam_renew = 1
+		////////////////////
 		Click = 1	
 	EndIF
 Else
@@ -15,7 +18,10 @@ endif
 // кнопка "->"
 if button clicked(b3)
 	If Click = 0 
-	
+		////////////////////
+		cam_X# = cam_X# + 0.02
+		Cam_renew = 1
+		////////////////////
 		Click = 1	
 	EndIF
 Else
@@ -23,10 +29,12 @@ Click = 0
 endif
 
 // кнопка "+"
-if button clicked(b4)=1
+if button clicked(b4)
 	If Click = 0 
 	    ////////////////////
-
+		cam_Z# = cam_Z# + 0.1
+		cam_Y# = cam_Y# - 0.02
+		Cam_renew = 1
 	    ////////////////////
 		Click = 1	
 	EndIF
@@ -38,7 +46,9 @@ endif
 if button clicked(b5)
 	If Click = 0 
 		////////////////////
-		
+		cam_Z# = cam_Z# - 0.1
+		cam_Y# = cam_Y# + 0.02
+		Cam_renew = 1
 		////////////////////
 		Click = 1	
 	EndIF
@@ -59,5 +69,7 @@ w2l6=make label(0,100,300,20,"camera position z: "+ str$(camera position z(0)),w
 Cam_renew = 0
 
 EndIF
+
+
 
 return
