@@ -1,0 +1,19 @@
+Rem ***** Included Source File *****
+
+
+// обычный ящик... 
+Type LVL_prs_box1
+
+	obj_nomber as Integer
+
+	colour_R as Integer 
+	colour_G as Integer
+	colour_B as Integer 
+	
+	x_pos as float
+	y_pos as float
+	z_pos as float
+	
+	
+	
+EndType

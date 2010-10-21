@@ -1,0 +1,16 @@
+D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\IBE_WB\bin\Debug\IBE_WB.exe
+D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\IBE_WB\bin\Debug\IBE_WB.pdb
+D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\IBE_WB\obj\Debug\ResolveAssemblyReference.cache
+D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\IBE_WB\obj\Debug\IBE_WB.Form1.resources
+D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\IBE_WB\obj\Debug\IBE_WB.Properties.Resources.resources
+D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\IBE_WB\obj\Debug\IBE_WB.csproj.GenerateResource.Cache
+D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\IBE_WB\obj\Debug\IBE_WB.exe
+D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\IBE_WB\obj\Debug\IBE_WB.pdb
+F:\iBinaryWay\IBE_WB\IBE_WB\obj\Debug\IBE_WB.exe
+F:\iBinaryWay\IBE_WB\IBE_WB\obj\Debug\IBE_WB.pdb
+F:\iBinaryWay\IBE_WB\IBE_WB\bin\Debug\IBE_WB.exe
+F:\iBinaryWay\IBE_WB\IBE_WB\bin\Debug\IBE_WB.pdb
+F:\iBinaryWay\IBE_WB\IBE_WB\obj\Debug\ResolveAssemblyReference.cache
+F:\iBinaryWay\IBE_WB\IBE_WB\obj\Debug\IBE_WB.Form1.resources
+F:\iBinaryWay\IBE_WB\IBE_WB\obj\Debug\IBE_WB.Properties.Resources.resources
+F:\iBinaryWay\IBE_WB\IBE_WB\obj\Debug\IBE_WB.csproj.GenerateResource.Cache

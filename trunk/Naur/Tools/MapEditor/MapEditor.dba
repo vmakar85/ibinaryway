@@ -15,6 +15,7 @@ Time = timer()
  cam_X# = 0 
  cam_Y# = 0.25
  cam_Z# = -2
+ camState = 1
 RemStart
 Основной цикл программы
 RemEnd
@@ -22,7 +23,6 @@ do
 //
 
 If MainTime > 300
-	Cam_renew = 1
 	MainTime = 0 
 	Time = timer()
 EndIf
@@ -46,9 +46,9 @@ RemEnd
 Function Create_Enter_point()
 
 	make object cube 1,1
-	make matrix 1,1000,1000,25,25
-	position matrix 1,-500,0,-500
-	update matrix 1
+// 	make matrix 1,10,10,10,1
+// 	position matrix 1,-1,0,-5
+// 	update matrix 1
 	rotate camera 0,7.2,0,0
 	//position camera 0,cam_X#,cam_Y#,cam_Z#
 
