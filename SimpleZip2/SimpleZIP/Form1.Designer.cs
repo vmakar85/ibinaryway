@@ -32,6 +32,7 @@
             this.button_zipFile = new System.Windows.Forms.Button();
             this.button_zipFolder = new System.Windows.Forms.Button();
             this.button_UnZip = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // button_zipFile
@@ -64,6 +65,16 @@
             this.button_UnZip.UseVisualStyleBackColor = true;
             this.button_UnZip.Click += new System.EventHandler(this.button_UnZip_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar1.Location = new System.Drawing.Point(0, 176);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(130, 23);
+            this.progressBar1.Step = 1;
+            this.progressBar1.TabIndex = 3;
+            this.progressBar1.Visible = false;
+            // 
             // SimpleZIP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -72,6 +83,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(130, 199);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button_UnZip);
             this.Controls.Add(this.button_zipFolder);
             this.Controls.Add(this.button_zipFile);
@@ -92,6 +104,7 @@
         private System.Windows.Forms.Button button_zipFile;
         private System.Windows.Forms.Button button_zipFolder;
         private System.Windows.Forms.Button button_UnZip;
+        public System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
