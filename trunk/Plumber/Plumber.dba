@@ -1,0 +1,53 @@
+Rem Project: Plumber
+Rem Created: Monday, November 22, 2010
+
+Rem ***** Main Source File *****
+
+set display mode 1024,600,32
+sync on
+hide mouse
+backdrop on
+color backdrop RGB(100,149,237)
+
+ load image "Media\pipe.png",65
+ sprite 65,150,150,65 
+
+
+for t = 1 to 64
+CREATE ANIMATED SPRITE t,"Media\pipe.png",6,2,t
+next t
+
+
+// тест
+
+For t = 1 to 64
+SET SPRITE FRAME t,rnd(12)	
+sprite t,rnd(640),rnd(600),t	
+Next t 
+
+
+
+do
+
+
+
+	
+
+if mouseclick()=1
+	If click2 = 0 
+For t = 1 to 64
+	SET SPRITE FRAME t,rnd(12)	
+Next t
+	click2 = 1 
+	EndIf
+else
+	
+	click2 = 0 
+EndIf	
+		
+
+
+sync
+loop
+
+
