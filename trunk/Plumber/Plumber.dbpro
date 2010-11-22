@@ -1,11 +1,12 @@
 ; **** Dark BASIC Professional Project File ****
-; **** Written by Synergy Editor ****
+; **** Written by DarkBASIC Professional Editor ****
 version=DBP1.00
 project name=Plumber
 
 ; **** source file information ****
 main=Plumber.dba
 LineMain=32
+final source=_Temp.dbsource
 
 ; **** Executable Information  ***
 ; build types: exe, media, installer, alone
@@ -38,7 +39,7 @@ window resolution=640x480
 
 ; **** Media ****
 ; Example entries: media1=graphics\*.jpg
-media root path=F:\iBinaryWay\Plumber\
+media root path=D:\MyWorks\Plumber\
 
 ; **** Icons ****
 
@@ -59,10 +60,3 @@ VerProductNumber=v1.0
 ; **** To Do ****
 
 ; **** Comments ****
-comments1=
-
-; **** Advanced (setup.ini) configuration ****
-RemoveSafetyCode=NO
-SafeArrays=YES
-LocalTempFolder=NO
-ExternaliseDLLS=NO
