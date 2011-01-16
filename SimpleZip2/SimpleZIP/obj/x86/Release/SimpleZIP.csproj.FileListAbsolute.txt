@@ -1,9 +1,0 @@
-F:\iBinaryWay\SimpleZip2\SimpleZIP\bin\Release\SimpleZIP.exe
-F:\iBinaryWay\SimpleZip2\SimpleZIP\bin\Release\SimpleZIP.pdb
-F:\iBinaryWay\SimpleZip2\SimpleZIP\obj\x86\Release\ResolveAssemblyReference.cache
-F:\iBinaryWay\SimpleZip2\SimpleZIP\obj\x86\Release\SimpleZIP.Properties.Resources.resources
-F:\iBinaryWay\SimpleZip2\SimpleZIP\obj\x86\Release\GenerateResource.read.1.tlog
-F:\iBinaryWay\SimpleZip2\SimpleZIP\obj\x86\Release\GenerateResource.write.1.tlog
-F:\iBinaryWay\SimpleZip2\SimpleZIP\obj\x86\Release\SimpleZIP.exe
-F:\iBinaryWay\SimpleZip2\SimpleZIP\obj\x86\Release\SimpleZIP.pdb
-F:\iBinaryWay\SimpleZip2\SimpleZIP\obj\x86\Release\SimpleZIP.SimpleZIP.resources
