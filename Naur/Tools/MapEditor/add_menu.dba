@@ -17,7 +17,12 @@ b2=make button(0,0,20,20,"<-",dbpro_w)
 b3=make button(20,0,20,20,"->",dbpro_w)
 b4=make button(40,0,20,20,"+",dbpro_w)
 b5=make button(60,0,20,20,"-",dbpro_w)
-
+b6=make button(80,0,40,20,"Home",dbpro_w)
+// Доп ящик курсора
+b_GhostBox1 = make button(0,20,20,20,"<-",dbpro_w)
+b_GhostBox2 = make button(20,20,20,20,"->",dbpro_w)
+b_GhostBox3 = make button(40,20,40,20,"Up",dbpro_w)
+b_GhostBox4 = make button(80,20,40,20,"Down",dbpro_w)
 
 `This command makes empty menu bar
 menu=make menu()
