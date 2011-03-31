@@ -1,4 +1,5 @@
 Rem ***** Included Source File *****
+
 RemStart
 
 RemEnd
@@ -19,7 +20,7 @@ Function LoadSound(FileName$)
 	For k = 1  to 1200
 		if sound exist(k) = 0
 		 soundName = k 
-		 load sound FileName$,ModelName
+		 load sound FileName$,soundName
 		 goto endserch_sound
 		endif	
 	Next k 
@@ -30,7 +31,7 @@ Function LoadImage(FileName$)
 	For k = 1  to 1200
 		if image exist(k) = 0
       	 imageNaxt = k 
-		 load image FileName$,imageName
+		 load image FileName$,imageNaxt
 		 goto endserch_image
     	 EndIf	
 	Next k 

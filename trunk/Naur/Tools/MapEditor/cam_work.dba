@@ -56,6 +56,21 @@ Else
 Click = 0
 endif
 
+// кнопка "home"
+if button clicked(b6)
+	If Click = 0 
+		////////////////////
+ 		cam_X# = 0 
+ 		cam_Y# = 0.25
+ 		cam_Z# = -2
+ 		camState = 1
+		////////////////////
+		Click = 1	
+	EndIF
+Else
+Click = 0
+endif
+
 
 If Cam_renew = 1
 
