@@ -39,7 +39,7 @@ window resolution=640x480
 
 ; **** Media ****
 ; Example entries: media1=graphics\*.jpg
-media root path=D:\MyWorks\Plumber\
+media root path=E:\MyWorks\Plumber\
 
 ; **** Icons ****
 
