@@ -1,4 +1,0 @@
-D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\streams yy\obj\Release\ResolveAssemblyReference.cache
-D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\streams yy\obj\Release\streams_yy.Form1.resources
-D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\streams yy\obj\Release\streams_yy.Properties.Resources.resources
-D:\Documents and Settings\makarenkov\Local Settings\Application Data\Temporary Projects\streams yy\obj\Release\streams yy.csproj.GenerateResource.Cache
