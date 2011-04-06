@@ -22,3 +22,7 @@ F:\iBinaryWay\SimpleZIP\obj\Release\SimpleZIP.Properties.Resources.resources
 F:\iBinaryWay\SimpleZIP\obj\Release\SimpleZIP.Form1.ru-RU.resources
 F:\iBinaryWay\SimpleZIP\obj\Release\SimpleZIP.csproj.GenerateResource.Cache
 F:\iBinaryWay\SimpleZIP\obj\Release\ru-RU\SimpleZIP.resources.dll
+E:\MyWorks\SimpleZIP\obj\Release\SimpleZIP.exe
+E:\MyWorks\SimpleZIP\obj\Release\SimpleZIP.pdb
+G:\MyWorks\SimpleZIP\obj\Release\SimpleZIP.exe
+G:\MyWorks\SimpleZIP\obj\Release\SimpleZIP.pdb
