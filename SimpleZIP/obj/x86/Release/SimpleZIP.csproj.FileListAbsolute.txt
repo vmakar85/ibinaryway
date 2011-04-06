@@ -1,0 +1,12 @@
+G:\MyWorks\SimpleZIP\bin\x86\Release\SimpleZIP.exe
+G:\MyWorks\SimpleZIP\bin\x86\Release\ru-RU\SimpleZIP.resources.dll
+G:\MyWorks\SimpleZIP\bin\x86\Release\ICSharpCode.SharpZipLib.dll
+G:\MyWorks\SimpleZIP\bin\x86\Release\ICSharpCode.SharpZipLib.xml
+G:\MyWorks\SimpleZIP\obj\x86\Release\ResolveAssemblyReference.cache
+G:\MyWorks\SimpleZIP\obj\x86\Release\SimpleZIP.Form1.resources
+G:\MyWorks\SimpleZIP\obj\x86\Release\SimpleZIP.Properties.Resources.resources
+G:\MyWorks\SimpleZIP\obj\x86\Release\SimpleZIP.Form1.ru-RU.resources
+G:\MyWorks\SimpleZIP\obj\x86\Release\GenerateResource-ResGen.read.1.tlog
+G:\MyWorks\SimpleZIP\obj\x86\Release\GenerateResource-ResGen.write.1.tlog
+G:\MyWorks\SimpleZIP\obj\x86\Release\ru-RU\SimpleZIP.resources.dll
+G:\MyWorks\SimpleZIP\obj\x86\Release\SimpleZIP.exe

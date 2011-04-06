@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="SimpleZIP">
+</Property><Property Name="Файл решения" Value="E:\MyWorks\SimpleZIP\SimpleZIP.sln">
+</Property><Property Name="Файл параметров пользователя" Value="E:\MyWorks\SimpleZIP\SimpleZIP.suo">
+</Property><Property Name="Date" Value="19 марта 2011 г.">
+</Property><Property Name="Time" Value="16:53">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="SimpleZIP.sln" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\SimpleZIP.sln">
+</Event><Event ErrorLevel="0" Project="" Source="SimpleZIP.suo" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\SimpleZIP.suo">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="SimpleZIP.csproj" Description="Успешно создана резервная копия файла проекта: E:\MyWorks\SimpleZIP\Backup\SimpleZIP.csproj">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="SimpleZIP.csproj.user" Description="Резервная копия проекта успешно создана как E:\MyWorks\SimpleZIP\Backup\SimpleZIP.csproj.user">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Form1.cs" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Form1.cs">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Form1.Designer.cs" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Form1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Program.cs" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Program.cs">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Properties\AssemblyInfo.cs" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Properties\Resources.Designer.cs" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Properties\Settings.Designer.cs" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Properties\Settings.settings" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Programs.ico" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Programs.ico">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Form1.resx" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Form1.resx">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Form1.ru-RU.resx" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Form1.ru-RU.resx">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="Properties\Resources.resx" Description="Успешно создана резервная копия файла E:\MyWorks\SimpleZIP\Backup\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="SimpleZIP.csproj" Description="Проект успешно преобразован">
+</Event><Event ErrorLevel="3" Project="SimpleZIP" Source="SimpleZIP.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="SimpleZIP.sln" Description="Преобразование решения успешно завершено">
+</Event><Event ErrorLevel="3" Project="" Source="SimpleZIP.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SimpleZIP" Source="SimpleZIP.csproj" Description="Сканирование завершено: обновление для файлов проекта не требуется.">
+</Event></UpgradeLog>
