@@ -1,21 +1,25 @@
 ; **** Dark BASIC Professional Project File ****
-; **** Written by DarkBASIC Professional Editor ****
 version=DBP1.00
 project name=Plumber
 
+
+
 ; **** source file information ****
 main=Plumber.dba
-LineMain=32
 include1=functions.dba
+; The compiler only needs to read the final source from this entry - the editor
+; handles include files, concatenation, etc.
 final source=_Temp.dbsource
 
-; **** Executable Information  ***
-; build types: exe, media, installer, alone
+; The editor will replace any references to %temp in the EXE path/filename
 executable=Plumber.exe
+
+; **** Executable Information  ***
+; build types: exe, media, installer,alone
 build type=exe
+
 ; ** Media file compression **
 compression=NO
-
 ; ** Media file encryption **
 encryption=NO
 ; ** Display the card options screen window? **
@@ -24,23 +28,19 @@ card options window=NO
 ; **** debugger information ****
 ; If the editor sets this to yes, it is running in debug mode
 CLI=NO
-CommandLineArguments=
 
 ; **** display mode information ****
 app title=Plumber
-
-; graphics mode options: fullscreen, window, desktop, fulldesktop, hidden
+; graphics mode options: fullscreen, window, desktop,fulldesktop, hidden
 graphics mode=window
 fullscreen resolution=640x480x32
-
 ; arbitrary sizes are valid for windowed mode
 window resolution=640x480
 
 ; **** External Files Information ****
-
 ; **** Media ****
-; Example entries: media1=graphics\*.jpg
 media root path=E:\MyWorks\Plumber\
+; example entries: media1=graphics\*.jpg
 
 ; **** Icons ****
 
@@ -57,7 +57,3 @@ VerTrademark=
 VerFilename=
 VerProduct=
 VerProductNumber=v1.0
-
-; **** To Do ****
-
-; **** Comments ****

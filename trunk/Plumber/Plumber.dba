@@ -12,31 +12,33 @@ SET WINDOW POSITION 10, 10
 
 
 //  load image "Media\pipe.png",65
-//  sprite 65,150,150,65 
+//  sprite 65,150,150,65
 ///
 
 // test
 // if file exist("test.txt") = 0
 // make file "test.txt"
 // endif
-// 
+//
 // open to write 1,"test.txt"
 // if file open(1)=1
-// WRITE STRING 1, "test..." 
+// WRITE STRING 1, "test..."
 // endif
-// WRITE STRING 1, "test..." 
+// WRITE STRING 1, "test..."
 /// end of test
 
 
 
-// 1280 - нирина. 
-// 720 высота. 
-// 
-// 480 - ширина и высота 10ти кубиков 
-// 
+// 1280 - нирина.
+// 720 высота.
+//
+// 480 - ширина и высота 10ти кубиков
+//
 // отступ по ширене 400
 // отступ по высоте 120
-save_to_file("test.tpl",123)
+//save_to_file("test.tpl",123)
+
+open to write 1, "test.tpl"
 
 CREATE ANIMATED SPRITE 150,"Media\pipe 8x2 full empt.png",2,1,150
 OffSetSprite_to_M(150)
@@ -63,43 +65,43 @@ next t
 
 
 
-t = 0 
-For x = 400 to 848 step 64 
-For y = 120 to 568 step 64 
+t = 0
+For x = 400 to 848 step 64
+For y = 120 to 568 step 64
 
  t = t + 1
  sprite t,x,y,t
  SET SPRITE FRAME t,rndx(7,rndx(7,12))
- 
+
 //  WRITE STRING 1, str$(x)
 //  WRITE STRING 1, str$(y) + "/n"
- save_to_file("test.tpl",x)
- 
-next x 
+ save_to_file(x)
+
+next x
 next y
 
 //close file 1
 
-end
+
 
 do
 
 
 
-	
+
 
 if mouseclick()=1
-	If click2 = 0 
+   If click2 = 0
 For t = 1 to 100
-	SET SPRITE FRAME t,rndx(7,12)	
+   SET SPRITE FRAME t,rndx(7,12)
 Next t
-	click2 = 1 
-	EndIf
+   click2 = 1
+   EndIf
 else
-	
-	click2 = 0 
-EndIf	
-		
+
+   click2 = 0
+EndIf
+
 text 10,10, "sprite y position= "+str$(sprite y(200) )
 text 10,30, "sprite x position= "+str$(sprite x(200) )
 
@@ -107,16 +109,16 @@ sprite 200,aimX,aimY,200
 aimX = mouseX()
 aimY = mouseY()
 
-	If mouseclick()=1
-        If click = 0 
-        
-        
-           click = 1 
-		EndIf
-	Else
-	    click = 0 
-	EndIf
-	
-	
+   If mouseclick()=1
+        If click = 0
+
+
+           click = 1
+      EndIf
+   Else
+       click = 0
+   EndIf
+
+
 sync
 loop

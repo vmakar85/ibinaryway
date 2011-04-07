@@ -24,12 +24,8 @@ endFunction
 
 
 
-Function save_to_file(filename$,str)
-
-open to write 1, filename$
+Function save_to_file(str)
 
 write string 1, str$(str)
- 
-close file 1
 
 ENDFUNCTION
