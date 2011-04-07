@@ -1,0 +1,35 @@
+Rem ***** Included Source File *****
+// Function ()
+// endFunction
+
+
+
+Function rndx(min,max)
+value=rnd(max-min)+min
+endFunction value
+
+Function OffSetSprite_to_M(spriteOffSet)
+Offset Sprite spriteOffSet,sprite width(spriteOffSet)/2,sprite height(spriteOffSet)/2
+endFunction
+
+Function rotateSprite()
+
+endFunction
+
+
+
+Function collisionDetec()
+
+endFunction
+
+
+
+Function save_to_file(filename$,str)
+
+open to write 1, filename$
+
+write string 1, str$(str)
+ 
+close file 1
+
+ENDFUNCTION
