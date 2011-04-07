@@ -6,6 +6,7 @@ project name=Plumber
 ; **** source file information ****
 main=Plumber.dba
 LineMain=32
+include1=functions.dba
 final source=_Temp.dbsource
 
 ; **** Executable Information  ***
