@@ -1,0 +1,81 @@
+Rem Project: Plumber
+Rem Created: Monday, November 22, 2010
+
+Rem ***** Main Source File *****
+
+set display mode 1280,720,32
+sync on
+hide mouse
+backdrop on
+color backdrop RGB(100,149,237)
+SET WINDOW POSITION 10, 10
+
+
+
+CREATE ANIMATED SPRITE 150,"Media\pipe 8x2 full empt.png",2,1,150
+OffSetSprite_to_M(150)
+SET SPRITE FRAME 150,1
+sprite 150,336,344,150
+mirror sprite 150
+
+CREATE ANIMATED SPRITE 151,"Media\pipe 8x2 full empt.png",2,1,151
+OffSetSprite_to_M(151)
+SET SPRITE FRAME 151,2
+sprite 151,912,344,151
+
+
+load image "Media\key.png",200
+sprite 200,300,400,200
+load image "Media\dot.png",201
+sprite 201,300,400,201
+
+
+for t = 1 to 64
+CREATE ANIMATED SPRITE t,"Media\pipe.png",6,2,t
+OffSetSprite_to_M(t)
+next t
+
+
+t = 0 
+For x = 400 to 848 step 64 
+For y = 120 to 568 step 64 
+
+ t = t + 1
+ sprite t,x,y,t
+ SET SPRITE FRAME t,rndx(7,rndx(7,12))
+ 
+next x 
+next y
+
+
+
+do
+	
+
+If mouseclick()=1
+	If click2 = 0 
+	
+    	rotateSprite()
+    	
+	   click2 = 1 
+	EndIf
+else	
+	   click2 = 0 
+endIf	
+		
+
+text 10,10, "Dot sprite y position= "+str$(sprite y(201))
+text 10,30, "Dot sprite x position= "+str$(sprite x(201))
+
+
+
+sprite 200,aimX,aimY,200
+sprite 201,aimX,aimY,201
+aimX = mouseX()
+aimY = mouseY()
+
+	
+
+	
+sync
+loop
